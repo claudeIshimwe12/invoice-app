@@ -1,0 +1,32 @@
+<div
+  class="flex justify-between bg-extraLightBlack lg:flex-col lg:min-h-screen lg:rounded-r-xl"
+>
+  <div>
+    <img src="assets/icon-logo.svg" alt="logo icon" />
+  </div>
+  <div
+    class="flex justify-between items-center gap-4 sm:gap-6 px-4 sm:px-6 lg:px-0 lg:flex-col lg:py-8"
+  >
+    @if (isDarkMode) {
+    <div
+      class="border-r border-r-lightBlue lg:border-b lg:border-r-0 md:border-b-lightBlue h-full items-center flex px-4 sm:px-6 lg:py-4"
+      (click)="switchToDarkMode()"
+    >
+      <img src="assets/icon-sun.svg" alt="sun icon" />
+    </div>
+    } @else {
+    <div
+      class="border-r border-r-lightBlue lg:border-b lg:border-r-0 md:border-b-lightBlue h-full items-center flex px-4 sm:px-6 lg:py-4"
+      (click)="switchToDarkMode()"
+    >
+      <img src="assets/icon-moon.svg" alt="moon icon" />
+    </div>
+    }
+
+    <img
+      src="assets/image-avatar.jpg"
+      alt="image image-avatar"
+      class="h-8 w-8 rounded-full outline-none"
+    />
+  </div>
+</div>
