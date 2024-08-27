@@ -7,9 +7,12 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
+import { HomeComponent } from './pages/home/home.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { FilterComponent } from './components/filter/filter.component';
 
 @NgModule({
-  declarations: [AppComponent, NavigationBarComponent],
+  declarations: [AppComponent, NavigationBarComponent, HomeComponent, NotFoundComponent, FilterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
