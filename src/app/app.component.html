@@ -1,9 +1,9 @@
-<div class="flex flex-col lg:flex-row">
+<div class="flex flex-col lg:flex-row dark:bg-black bg-almostWhite">
   <app-navigation-bar
     [isDarkMode]="switchedToDarkMode"
     (toggleDarkMode)="switchThemes()"
   ></app-navigation-bar>
-  <div>
-    <h1>Other content</h1>
+  <div class="w-full">
+    <router-outlet></router-outlet>
   </div>
 </div>
