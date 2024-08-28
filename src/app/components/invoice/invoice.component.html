@@ -8,11 +8,11 @@
   <p class="text-ellipsis dark:text-white row-span-2 sm:row-span-1 sm:hidden">
     {{ invoice.clientName }}
   </p>
-  <p class="text-extraLightBlue col-span-2 sm:col-span-1 mt-2 sm:hidden">
-    {{ invoice.paymentDue }}
+  <p class="text-darkCyan col-span-2 sm:col-span-1 mt-2 sm:hidden">
+    Due {{ invoice.paymentDue | date : "dd MMM yyyy" }}
   </p>
-  <p class="text-extraLightBlue col-span-2 sm:col-span-1 mt-2 hidden sm:block">
-    {{ invoice.paymentDue }}
+  <p class="text-darkCyan col-span-2 sm:col-span-1 mt-2 hidden sm:block">
+    Due {{ invoice.paymentDue | date : "dd MMM yyyy" }}
   </p>
   <p
     class="text-ellipsis dark:text-white row-span-2 sm:row-span-1 hidden sm:block"
