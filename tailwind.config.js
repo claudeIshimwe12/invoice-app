@@ -17,6 +17,8 @@ module.exports = {
         semiDarkBlue: "#373B53",
         darkCyan: "#888EB0",
         lightCyan: "#7E88C3",
+        greenLight: "#33D69F",
+        orangeLight: "#FF8F00",
       },
     },
   },

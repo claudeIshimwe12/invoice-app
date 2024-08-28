@@ -10,14 +10,26 @@ import { NavigationBarComponent } from './components/navigation-bar/navigation-b
 import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { FilterComponent } from './components/filter/filter.component';
+import { HttpClientModule } from '@angular/common/http';
+import { InvoicesEffects } from './store/invoices/invoices.effects';
+import { invoiceReducers } from './store/invoices/invoices.reducers';
+import { InvoiceComponent } from './components/invoice/invoice.component';
 
 @NgModule({
-  declarations: [AppComponent, NavigationBarComponent, HomeComponent, NotFoundComponent, FilterComponent],
+  declarations: [
+    AppComponent,
+    NavigationBarComponent,
+    HomeComponent,
+    NotFoundComponent,
+    FilterComponent,
+    InvoiceComponent,
+  ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot({ appState: invoiceReducers }),
+    EffectsModule.forRoot([InvoicesEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: !isDevMode(), // Restrict extension to log-only mode

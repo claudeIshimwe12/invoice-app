@@ -1,4 +1,4 @@
-<section class="h-full w-full px-8 md:px-36 lg:px-48 py-4 md:py-14">
+<section class="w-full px-8 md:px-36 lg:px-48 py-4 my-8 md:pt-14 mt-24 lg:mt-0">
   <div class="flex justify-between">
     <div>
       <h1
@@ -6,7 +6,7 @@
       >
         Invoices
       </h1>
-      <h4 class="text-darkCyan text-sm sm:flex sm:gap-2">
+      <h4 class="text-darkCyan text-sm sm:flex sm:gap-2 mt-2">
         <span class="hidden sm:block">There are</span> 4
         <span class="hidden sm:block">pending</span> invoices
       </h4>
@@ -20,13 +20,6 @@
         <img
           src="assets/icon-arrow-up.svg"
           alt="arrow up icon"
-          (click)="toggleFilter()"
-        />
-
-        } @else {
-        <img
-          src="assets/icon-arrow-down.svg"
-          alt="arrow down icon"
           (click)="toggleFilter()"
         />
         <div
@@ -59,6 +52,14 @@
             </label>
           </div>
         </div>
+
+        } @else {
+        <img
+          src="assets/icon-arrow-down.svg"
+          alt="arrow down icon"
+          (click)="toggleFilter()"
+        />
+
         }
       </div>
       <div
