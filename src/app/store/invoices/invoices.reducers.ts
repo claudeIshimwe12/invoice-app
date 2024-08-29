@@ -1,11 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
 import * as InvoiceActions from './../invoices/invoices.actions';
-import { AppState } from '../../models/app-state.interface';
+import { InvoicesState } from '../../models/invoice-state.interface';
 
-export const initialState: AppState = {
+export const initialState: InvoicesState = {
   invoices: [],
-  isLoading: false,
-  error: '',
+  filters: [],
+  loading: false,
+  error: null,
 };
 export const invoiceReducers = createReducer(
   initialState,
@@ -22,5 +23,13 @@ export const invoiceReducers = createReducer(
     ...state,
     error,
     isLoading: false,
+  })),
+  on(InvoiceActions.addNewInvoice, (state, actions) => ({
+    ...state,
+    invoices: [...state.invoices, actions.value],
+  })),
+  on(InvoiceActions.setInvoiceFilters, (state, { filters }) => ({
+    ...state,
+    filters,
   }))
 );

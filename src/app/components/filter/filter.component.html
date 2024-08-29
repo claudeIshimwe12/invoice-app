@@ -13,7 +13,10 @@
     </div>
     <div class="flex justify-between gap-4">
       <div class="flex justify-between items-center relative gap-2">
-        <h1 class="text-lg text-black dark:text-almostWhite sm:flex gap-2">
+        <h1
+          class="text-lg text-black dark:text-almostWhite sm:flex gap-2"
+          (click)="toggleFilter()"
+        >
           Filter <span class="hidden sm:block">by status</span>
         </h1>
         @if (isFilterOn) {
@@ -23,30 +26,42 @@
           (click)="toggleFilter()"
         />
         <div
-          class="absolute bg-white dark:bg-extraLightBlack rounded-md min-w-32 sm:min-w-40 top-12 sm:top-14 -left-6 sm:left-0 p-4 shadow-lg"
+          class="absolute bg-white dark:bg-extraLightBlack rounded-md min-w-32 sm:min-w-40 top-12 sm:top-14 -left-6 sm:left-0 p-4 shadow-xl z-50"
         >
           <div class="flex flex-col space-y-4">
-            <label class="inline-flex items-center cursor-pointer">
+            <label
+              class="inline-flex items-center cursor-pointer"
+              (click)="onFilterToggle('draft')"
+            >
               <input type="checkbox" class="form-checkbox custom-checkbox" />
 
               <span
                 class="ml-2 text-extraLightBlack dark:text-white dark:font-normal font-bold"
+                (click)="onFilterToggle('draft')"
                 >Draft</span
               >
             </label>
-            <label class="inline-flex items-center cursor-pointer">
+            <label
+              class="inline-flex items-center cursor-pointer"
+              (click)="onFilterToggle('pending')"
+            >
               <input type="checkbox" class="form-checkbox custom-checkbox" />
 
               <span
                 class="ml-2 text-extraLightBlack dark:text-white dark:font-normal font-bold"
+                (click)="onFilterToggle('pending')"
                 >Pending</span
               >
             </label>
-            <label class="inline-flex items-center cursor-pointer">
+            <label
+              class="inline-flex items-center cursor-pointer"
+              (click)="onFilterToggle('paid')"
+            >
               <input type="checkbox" class="form-checkbox custom-checkbox" />
 
               <span
                 class="ml-2 text-extraLightBlack dark:text-white dark:font-normal font-bold"
+                (click)="onFilterToggle('paid')"
                 >Paid</span
               >
             </label>
@@ -63,7 +78,8 @@
         }
       </div>
       <div
-        class="bg-primary flex justify-between items-center px-1 gap-4 rounded-full"
+        class="bg-primary flex justify-between items-center px-1 gap-4 rounded-full cursor-pointer"
+        (click)="addNew()"
       >
         <div
           class="bg-white rounded-full h-10 w-10 flex justify-center items-center"

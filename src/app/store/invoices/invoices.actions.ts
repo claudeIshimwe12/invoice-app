@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Invoice } from '../../models/invoice.interface';
+import { InvoiceFilter } from '../../models/invoice-state.interface';
 
 export const loadInvoices = createAction('[Invoice] Load Invoices');
 export const loadInvoicesSuccess = createAction(
@@ -9,4 +10,17 @@ export const loadInvoicesSuccess = createAction(
 export const loadInvoicesFailure = createAction(
   '[Invoice] Load Invoices Failure',
   props<{ error: string }>()
+);
+export const addNewInvoice = createAction(
+  '[Invoice] Add Invoice',
+  props<{ value: Invoice }>()
+);
+
+export const setInvoiceFilter = createAction(
+  '[Invoices] Set Filter',
+  props<{ filter: InvoiceFilter }>()
+);
+export const setInvoiceFilters = createAction(
+  '[Invoices] Set Filters',
+  props<{ filters: InvoiceFilter[] }>()
 );
