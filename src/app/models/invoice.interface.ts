@@ -1,4 +1,5 @@
 import { Address } from './address.interface';
+import { InvoiceFilter } from './invoice-state.interface';
 import { Item } from './item.interface';
 
 export interface Invoice {
@@ -9,7 +10,7 @@ export interface Invoice {
   paymentTerms: number;
   clientName: string;
   clientEmail: string;
-  status: string;
+  status: InvoiceFilter;
   senderAddress: Address;
   clientAddress: Address;
   items: Item[];

@@ -14,7 +14,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { InvoicesEffects } from './store/invoices/invoices.effects';
 import { invoiceReducers } from './store/invoices/invoices.reducers';
 import { InvoiceComponent } from './components/invoice/invoice.component';
-
+import { FormsModule } from '@angular/forms';
+import { NewInvoiceComponent } from './components/new-invoice/new-invoice.component';
+import { EmptyInvoicesComponent } from './components/empty-invoices/empty-invoices.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,12 +26,16 @@ import { InvoiceComponent } from './components/invoice/invoice.component';
     NotFoundComponent,
     FilterComponent,
     InvoiceComponent,
+    NewInvoiceComponent,
+    EmptyInvoicesComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
-    StoreModule.forRoot({ appState: invoiceReducers }),
+    StoreModule.forRoot({ invoices: invoiceReducers }),
     EffectsModule.forRoot([InvoicesEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
