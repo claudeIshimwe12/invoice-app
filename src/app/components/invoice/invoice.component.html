@@ -1,5 +1,5 @@
 <section
-  class="grid grid-cols-3 sm:grid-cols-5 items-center mt-2 p-4 sm:p-6 lg:px-8 shadow-lg rounded-lg bg-white dark:bg-extraLightBlack"
+  class="grid grid-cols-3 sm:grid-cols-5 items-center mt-2 p-4 sm:p-6 lg:px-8 shadow-lg rounded-lg hover:border hover:border-primary cursor-pointer outline-none"
 >
   <h1 class="text-lg font-bold col-span-2 sm:col-span-1">
     <span class="text-grey-3 dark:text-white">#</span>
@@ -22,35 +22,47 @@
   <p class="text-black font-extrabold dark:text-white col-span-2 sm:col-span-1">
     £ {{ invoice.total }}
   </p>
-  <div class="flex items-center justify-center gap-2 p-2 rounded-lg relative">
+
+  <div class="md:flex md:gap-4">
     <div
-      class="absolute w-full h-full top-0 left-0 opacity-10 rounded-lg"
-      [ngClass]="{
-        'bg-greenLight': invoice.status == 'paid',
-        'bg-orangeLight': invoice.status == 'pending',
-        'bg-semiDarkBlue': invoice.status == 'draft',
-        'dark:bg-[#979797]': invoice.status == 'draft'
-      }"
-    ></div>
-    <div
-      class="w-2 h-2 rounded-full z-20"
-      [ngClass]="{
-        'bg-greenLight': invoice.status == 'paid',
-        'bg-orangeLight': invoice.status == 'pending',
-        'bg-semiDarkBlue': invoice.status == 'draft',
-        'dark:bg-[#979797]': invoice.status == 'draft'
-      }"
-    ></div>
-    <p
-      class="font-bold z-20"
-      [ngClass]="{
-        'text-greenLight': invoice.status == 'paid',
-        'text-orangeLight': invoice.status == 'pending',
-        'text-semiDarkBlue': invoice.status == 'draft',
-        'dark:text-[#979797]': invoice.status == 'draft'
-      }"
+      class="flex items-center justify-center gap-2 p-2 rounded-lg relative md:flex-grow"
     >
-      {{ invoice.status }}
-    </p>
+      <div
+        class="absolute w-full h-full top-0 left-0 opacity-10 rounded-lg"
+        [ngClass]="{
+          'bg-greenLight': invoice.status == 'paid',
+          'bg-orangeLight': invoice.status == 'pending',
+          'bg-semiDarkBlue': invoice.status == 'draft',
+          'dark:bg-[#979797]': invoice.status == 'draft'
+        }"
+      ></div>
+      <div
+        class="w-2 h-2 rounded-full z-10"
+        [ngClass]="{
+          'bg-greenLight': invoice.status == 'paid',
+          'bg-orangeLight': invoice.status == 'pending',
+          'bg-semiDarkBlue': invoice.status == 'draft',
+          'dark:bg-[#979797]': invoice.status == 'draft'
+        }"
+      ></div>
+      <p
+        class="font-bold z-10"
+        [ngClass]="{
+          'text-greenLight': invoice.status == 'paid',
+          'text-orangeLight': invoice.status == 'pending',
+          'text-semiDarkBlue': invoice.status == 'draft',
+          'dark:text-[#979797]': invoice.status == 'draft'
+        }"
+      >
+        {{ invoice.status }}
+      </p>
+    </div>
+    <div class="hidden md:flex items-center">
+      <img
+        class="mx-auto"
+        src="assets/icon-arrow-right.svg"
+        alt="icon-arrow-right"
+      />
+    </div>
   </div>
 </section>

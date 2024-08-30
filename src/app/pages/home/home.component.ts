@@ -8,6 +8,7 @@ import {
 } from '../../store/invoices/invoices.selectors';
 import { AppState } from '../../models/app-state.interface';
 import * as InvoiceActions from '../../store/invoices/invoices.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,7 @@ export class HomeComponent implements OnInit {
   loader$!: Observable<boolean>;
   // invoices$: Observable<Invoice[]> = of([]);
   toggleNewInvoice: boolean = false;
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private router: Router) {
     this.store.dispatch(InvoiceActions.loadInvoices());
   }
 
@@ -30,5 +31,9 @@ export class HomeComponent implements OnInit {
 
   toggle() {
     this.toggleNewInvoice = !this.toggleNewInvoice;
+  }
+
+  onInvoiceClick(id: string) {
+    this.router.navigate(['/invoice', id]);
   }
 }

@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { NewInvoiceComponent } from './components/new-invoice/new-invoice.component';
 import { EmptyInvoicesComponent } from './components/empty-invoices/empty-invoices.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SingInvoiceComponent } from './pages/sing-invoice/sing-invoice.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +29,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     InvoiceComponent,
     NewInvoiceComponent,
     EmptyInvoicesComponent,
+    SingInvoiceComponent,
   ],
   imports: [
     BrowserModule,

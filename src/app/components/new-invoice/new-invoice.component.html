@@ -1,20 +1,23 @@
-<section>
+<section class="bg-slate-300/10 backdrop-blur relative z-40">
   <form
     [formGroup]="invoiceForm"
-    class="w-full sm:w-10/12 px-8 sm:px-0 md:px-36 lg:px-48 py-8 my-8 md:pt-14 mt-16 lg:mt-0"
+    class="relative w-full sm:w-10/12 lg:w-1/2 px-8 sm:px-8 py-4 lg:py-2 my-8 sm:my-0 md:pt-14 mt-16 lg:mt-0 bg-white dark:bg-lightBlack overflow-y-auto max-h-screen"
   >
-    <div class="flex items-center gap-2 cursor-pointer" (click)="discard()">
+    <div
+      class="flex items-center gap-2 cursor-pointer sm:hidden"
+      (click)="discard()"
+    >
       <img src="assets/icon-arrow-left.svg" alt="icon-arrow-left" />
       <h1 class="text-black dark:text-white text-xs font-bold pt-1">Go back</h1>
     </div>
-    <h1 class="text-black dark:text-white text-2xl font-bold my-4">
+    <h1 class="text-black dark:text-white text-2xl font-bold my-4 md:my-2">
       New Invoice
     </h1>
 
-    <div formGroupName="billFrom" class="mb-6">
-      <h3 class="text-sm text-primary font-semibold mb-2">Bill From</h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
+    <div formGroupName="billFrom" class="mb-6 lg:mb-2">
+      <h3 class="text-sm text-primary font-semibold mb-2 lg:mb-1">Bill From</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="lg:col-span-3">
           <div class="flex justify-between">
             <label
               class="text-xs text-darkCyan"
@@ -34,10 +37,10 @@
           <input
             formControlName="streetAddress"
             type="text"
-            class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+            class="mt-1 block w-full border border-extraLightBlue rounded-md h-full lg:h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
           />
         </div>
-        <div class="flex justify-between gap-4 mt-4">
+        <div class="flex justify-between gap-4 mt-4 lg:col-span-2">
           <div class="w-full">
             <div class="flex justify-between">
               <label
@@ -111,10 +114,10 @@
       </div>
     </div>
 
-    <div formGroupName="billTo" class="mb-6">
+    <div formGroupName="billTo" class="mb-6 lg:mb-2 lg:mt-8">
       <h3 class="text-sm text-primary font-semibold mb-2">Bill To</h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="lg:col-span-3">
           <div class="flex justify-between">
             <label
               class="text-xs text-darkCyan"
@@ -137,7 +140,7 @@
             class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
           />
         </div>
-        <div class="mt-4">
+        <div class="mt-4 lg:col-span-3">
           <div class="flex justify-between">
             <label
               class="text-xs text-darkCyan"
@@ -160,7 +163,7 @@
             class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
           />
         </div>
-        <div class="mt-4">
+        <div class="mt-4 lg:col-span-3">
           <div class="flex justify-between">
             <label
               class="text-xs text-darkCyan"
@@ -183,7 +186,7 @@
             class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
           />
         </div>
-        <div class="flex justify-between gap-4 mt-4">
+        <div class="flex justify-between gap-4 mt-4 lg:col-span-2">
           <div class="w-full">
             <div class="flex justify-between">
               <label
@@ -259,12 +262,12 @@
 
     <div class="mb-6">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
+        <div class="lg:mt-4">
           <label class="block text-xs text-darkCyan">Invoice Date</label>
           <input
             formControlName="invoiceDate"
             type="date"
-            class="mt-1 block w-full border border-extraLightBlue rounded-md h-full px-4 py-0 dark:border-semiDarkBlue dark:bg-extraLightBlack"
+            class="mt-1 block w-full border border-extraLightBlue rounded-md h-full lg:h-4/6 px-4 py-0 dark:border-semiDarkBlue dark:bg-extraLightBlack"
           />
         </div>
         <div class="mt-4">
@@ -326,14 +329,14 @@
       />
     </div>
 
-    <div formArrayName="items" class="mb-6">
+    <div formArrayName="items" class="mb-28 lg:mt-4 lg:mb-24">
       <h3 class="text-lg font-semibold text-[#777F98] mb-2">Items List</h3>
       <div
         *ngFor="let item of items.controls; let i = index"
         [formGroupName]="i"
         class="my-4"
       >
-        <div class="flex-1 h-10 mt-12">
+        <div class="flex-1 h-10 mt-1 md:mt-12 lg:mt-8">
           <label class="block text-xs font-medium text-darkCyan"
             >Item Name</label
           >
@@ -388,7 +391,7 @@
     </div>
 
     <div
-      class="w-full sm:w-10/12 fixed bottom-0 bg-white dark:bg-extraLightBlack flex justify-between p-4 custom-shadow z-50"
+      class="w-full sm:w-10/12 lg:w-1/2 fixed bottom-14 sm:bottom-0 left-0 bg-white dark:bg-extraLightBlack flex justify-between p-4 custom-shadow z-50"
     >
       <button
         type="button"
