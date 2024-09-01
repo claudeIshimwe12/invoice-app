@@ -1,0 +1,7 @@
+@media only screen and (max-width: 600px) {
+  .custom-shadow {
+    -webkit-box-shadow: -2px -8px 27px -10px rgba(36, 36, 36, 1);
+    -moz-box-shadow: -2px -8px 27px -10px rgba(36, 36, 36, 1);
+    box-shadow: -2px -8px 27px -10px rgba(36, 36, 36, 1);
+  }
+}

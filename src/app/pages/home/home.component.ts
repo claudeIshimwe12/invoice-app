@@ -1,34 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Invoice } from '../../models/invoice.interface';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
-import {
-  selectAllInvoices,
-  selectFilteredInvoices,
-} from '../../store/invoices/invoices.selectors';
+import { selectFilteredInvoices } from '../../store/invoices/invoices.selectors';
 import { AppState } from '../../models/app-state.interface';
-import * as InvoiceActions from '../../store/invoices/invoices.actions';
+import { Router } from '@angular/router';
+import { selectModalVisibility } from '../../store/ui/ui.selectors';
+import * as UIActions from '../../store/ui/ui.actions';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   invoices$!: Observable<Invoice[]>;
   loader$!: Observable<boolean>;
-  // invoices$: Observable<Invoice[]> = of([]);
-  toggleNewInvoice: boolean = false;
-  constructor(private store: Store<AppState>) {
-    this.store.dispatch(InvoiceActions.loadInvoices());
-  }
-
-  ngOnInit(): void {
+  toggleNewInvoice$: Observable<boolean>;
+  constructor(private store: Store<AppState>, private router: Router) {
     this.invoices$ = this.store.pipe(select(selectFilteredInvoices));
-    // this.loader$ = this.store.pipe(select(selectIsLoading));
+    this.toggleNewInvoice$ = this.store.pipe(select(selectModalVisibility));
   }
 
   toggle() {
-    this.toggleNewInvoice = !this.toggleNewInvoice;
+    this.store.dispatch(UIActions.toggleNewInvoiceModal());
+  }
+
+  onInvoiceClick(id: string) {
+    this.router.navigate(['/invoice', id]);
   }
 }

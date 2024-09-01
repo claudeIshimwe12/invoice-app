@@ -1,6 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
 import * as InvoiceActions from './../invoices/invoices.actions';
-import { InvoicesState } from '../../models/invoice-state.interface';
+import {
+  InvoiceFilter,
+  InvoicesState,
+} from '../../models/invoice-state.interface';
 
 export const initialState: InvoicesState = {
   invoices: [],
@@ -31,5 +34,17 @@ export const invoiceReducers = createReducer(
   on(InvoiceActions.setInvoiceFilters, (state, { filters }) => ({
     ...state,
     filters,
+  })),
+  on(InvoiceActions.deleteInvoice, (state, { id }) => ({
+    ...state,
+    invoices: state.invoices.filter((data) => data.id !== id),
+  })),
+  on(InvoiceActions.markInvoiceAsPaid, (state, { id }) => ({
+    ...state,
+    invoices: state.invoices.map((invoice) =>
+      invoice.id === id
+        ? { ...invoice, status: 'paid' as InvoiceFilter }
+        : invoice
+    ),
   }))
 );

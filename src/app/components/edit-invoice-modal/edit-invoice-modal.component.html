@@ -1,4 +1,4 @@
-<section class="bg-slate-300/10 backdrop-blur relative z-40">
+<section class="bg-slate-300/10 backdrop-blur relative">
   <form
     [formGroup]="invoiceForm"
     class="relative w-full sm:w-10/12 lg:w-1/2 px-8 sm:px-8 py-4 lg:py-2 my-8 sm:my-0 md:pt-14 mt-16 lg:mt-0 bg-white dark:bg-lightBlack overflow-y-auto max-h-screen"
@@ -11,7 +11,7 @@
       <h1 class="text-black dark:text-white text-xs font-bold pt-1">Go back</h1>
     </div>
     <h1 class="text-black dark:text-white text-2xl font-bold my-4 md:my-2">
-      New Invoice
+      Edit <span class="text-primary">#</span>XM9141
     </h1>
 
     <div formGroupName="billFrom" class="mb-6 lg:mb-2">
@@ -22,9 +22,9 @@
             <label
               class="text-xs text-darkCyan"
               [ngClass]="{
-                'text-danger': invoiceForm.get('billFrom.streetAddress')
-                  ?.touched && invoiceForm.get('billFrom.streetAddress')?.errors?.['required']
-              }"
+                  'text-danger': invoiceForm.get('billFrom.streetAddress')
+                    ?.touched && invoiceForm.get('billFrom.streetAddress')?.errors?.['required']
+                }"
               >Street Address</label
             >
             <span
@@ -46,9 +46,9 @@
               <label
                 class="text-xs text-darkCyan"
                 [ngClass]="{
-                  'text-danger': invoiceForm.get('billFrom.city')
-                    ?.touched && invoiceForm.get('billFrom.city')?.errors?.['required']
-                }"
+                    'text-danger': invoiceForm.get('billFrom.city')
+                      ?.touched && invoiceForm.get('billFrom.city')?.errors?.['required']
+                  }"
                 >City</label
               >
               <span
@@ -69,9 +69,9 @@
               <label
                 class="text-xs text-darkCyan"
                 [ngClass]="{
-                  'text-danger': invoiceForm.get('billFrom.postCode')
-                    ?.touched && invoiceForm.get('billFrom.postCode')?.errors?.['required']
-                }"
+                    'text-danger': invoiceForm.get('billFrom.postCode')
+                      ?.touched && invoiceForm.get('billFrom.postCode')?.errors?.['required']
+                  }"
                 >Post-code</label
               >
               <span
@@ -93,9 +93,9 @@
             <label
               class="text-xs text-darkCyan"
               [ngClass]="{
-                'text-danger': invoiceForm.get('billFrom.country')
-                  ?.touched && invoiceForm.get('billFrom.country')?.errors?.['required']
-              }"
+                  'text-danger': invoiceForm.get('billFrom.country')
+                    ?.touched && invoiceForm.get('billFrom.country')?.errors?.['required']
+                }"
               >Country</label
             >
             <span
@@ -122,9 +122,9 @@
             <label
               class="text-xs text-darkCyan"
               [ngClass]="{
-                'text-danger': invoiceForm.get('billTo.clientName')
-                  ?.touched && invoiceForm.get('billTo.clientName')?.errors?.['required']
-              }"
+                  'text-danger': invoiceForm.get('billTo.clientName')
+                    ?.touched && invoiceForm.get('billTo.clientName')?.errors?.['required']
+                }"
               >Client's Name</label
             >
             <span
@@ -145,9 +145,9 @@
             <label
               class="text-xs text-darkCyan"
               [ngClass]="{
-                'text-danger': invoiceForm.get('billTo.clientEmail')
-                  ?.touched && invoiceForm.get('billTo.clientEmail')?.errors?.['required']
-              }"
+                  'text-danger': invoiceForm.get('billTo.clientEmail')
+                    ?.touched && invoiceForm.get('billTo.clientEmail')?.errors?.['required']
+                }"
               >Client's Email</label
             >
             <span
@@ -168,9 +168,9 @@
             <label
               class="text-xs text-darkCyan"
               [ngClass]="{
-                'text-danger': invoiceForm.get('billTo.streetAddress')
-                  ?.touched && invoiceForm.get('billTo.streetAddress')?.errors?.['required']
-              }"
+                  'text-danger': invoiceForm.get('billTo.streetAddress')
+                    ?.touched && invoiceForm.get('billTo.streetAddress')?.errors?.['required']
+                }"
               >Street Address</label
             >
             <span
@@ -192,9 +192,9 @@
               <label
                 class="text-xs text-darkCyan"
                 [ngClass]="{
-                  'text-danger': invoiceForm.get('billTo.city')
-                    ?.touched && invoiceForm.get('billTo.city')?.errors?.['required']
-                }"
+                    'text-danger': invoiceForm.get('billTo.city')
+                      ?.touched && invoiceForm.get('billTo.city')?.errors?.['required']
+                  }"
                 >City</label
               >
               <span
@@ -215,9 +215,9 @@
               <label
                 class="text-xs text-darkCyan"
                 [ngClass]="{
-                  'text-danger': invoiceForm.get('billTo.postCode')
-                    ?.touched && invoiceForm.get('billTo.postCode')?.errors?.['required']
-                }"
+                    'text-danger': invoiceForm.get('billTo.postCode')
+                      ?.touched && invoiceForm.get('billTo.postCode')?.errors?.['required']
+                  }"
                 >Post Code</label
               >
               <span
@@ -239,9 +239,9 @@
             <label
               class="text-xs text-darkCyan"
               [ngClass]="{
-                'text-danger': invoiceForm.get('billTo.country')
-                  ?.touched && invoiceForm.get('billTo.country')?.errors?.['required']
-              }"
+                  'text-danger': invoiceForm.get('billTo.country')
+                    ?.touched && invoiceForm.get('billTo.country')?.errors?.['required']
+                }"
               >Country</label
             >
             <span
@@ -310,9 +310,9 @@
         <label
           class="text-xs text-darkCyan"
           [ngClass]="{
-            'text-danger': invoiceForm.get('projectDescription')
-              ?.touched && invoiceForm.get('projectDescription')?.errors?.['required']
-          }"
+              'text-danger': invoiceForm.get('projectDescription')
+                ?.touched && invoiceForm.get('projectDescription')?.errors?.['required']
+            }"
           >Project Description</label
         >
         <span
@@ -391,28 +391,21 @@
     </div>
 
     <div
-      class="w-full sm:w-10/12 lg:w-1/2 fixed bottom-14 sm:bottom-0 left-0 bg-white dark:bg-extraLightBlack flex justify-between p-4 custom-shadow z-50"
+      class="w-full sm:w-10/12 lg:w-1/2 fixed bottom-14 sm:bottom-0 left-0 bg-white dark:bg-extraLightBlack flex justify-end gap-2 md:gap-4 p-4 custom-shadow z-50"
     >
       <button
         type="button"
-        class="text-black bg-extraLightBlue px-4 py-2 rounded-full text-xs font-bold"
         (click)="discard()"
-      >
-        Discard
-      </button>
-      <button
-        type="button"
         class="bg-semiDarkBlue text-darkCyan px-4 py-2 rounded-full text-xs font-bold"
-        (click)="onSaveAsDraft()"
       >
-        Save as Draft
+        Cancel
       </button>
       <button
         type="submit"
         class="bg-primary text-extraLightBlue px-4 py-2 rounded-full text-xs font-bold"
         (click)="onSubmit()"
       >
-        Save & Send
+        Save Changes
       </button>
     </div>
   </form>

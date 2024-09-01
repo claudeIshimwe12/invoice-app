@@ -1,0 +1,250 @@
+<div
+  class="p-8 sm:px-12 lg:px-64 min-h-screen py-24 w-full"
+  *ngIf="invoice$ | async as invoice"
+>
+  <div class="flex items-center gap-2 cursor-pointer" (click)="onGoBack()">
+    <img src="assets/icon-arrow-left.svg" alt="icon-arrow-left" />
+    <h1 class="text-black dark:text-white text-xs font-bold pt-1">Go back</h1>
+  </div>
+  <div
+    class="flex justify-between p-4 sm:px-8 sm:py-4 bg-white dark:bg-extraLightBlack rounded-md items-center my-4"
+  >
+    <div class="flex justify-between w-full sm:w-auto items-center gap-4">
+      <h1 class="dark:text-extraLightBlue text-xs">Status</h1>
+      <div class="md:flex md:gap-4">
+        <div
+          class="flex items-center justify-center gap-2 p-2 rounded-lg relative md:flex-grow"
+        >
+          <div
+            class="absolute w-full h-full top-0 left-0 opacity-10 rounded-lg"
+            [ngClass]="{
+              'bg-greenLight': invoice.status == 'paid',
+              'bg-orangeLight': invoice.status == 'pending',
+              'bg-semiDarkBlue': invoice.status == 'draft',
+              'dark:bg-[#979797]': invoice.status == 'draft'
+            }"
+          ></div>
+          <div
+            class="w-2 h-2 rounded-full z-10"
+            [ngClass]="{
+              'bg-greenLight': invoice.status == 'paid',
+              'bg-orangeLight': invoice.status == 'pending',
+              'bg-semiDarkBlue': invoice.status == 'draft',
+              'dark:bg-[#979797]': invoice.status == 'draft'
+            }"
+          ></div>
+          <p
+            class="font-bold z-10 text-xs"
+            [ngClass]="{
+              'text-greenLight': invoice.status == 'paid',
+              'text-orangeLight': invoice.status == 'pending',
+              'text-semiDarkBlue': invoice.status == 'draft',
+              'dark:text-[#979797]': invoice.status == 'draft'
+            }"
+          >
+            {{ invoice.status }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="hidden bg-white dark:bg-extraLightBlack sm:flex sm:gap-2 justify-between custom-shadow"
+    >
+      <button
+        type="button"
+        (click)="toggle()"
+        class="text-black dark:text-white dark:bg-semiDarkBlue bg-white px-4 py-2 rounded-full text-xs font-bold"
+      >
+        Edit
+      </button>
+      <button
+        type="button"
+        (click)="onDeleteInvoice(invoice.id)"
+        class="bg-danger text-white px-4 py-2 rounded-full text-xs font-bold"
+      >
+        Delete
+      </button>
+      @if (invoice.status !== 'paid') {
+      <button
+        type="submit"
+        (click)="markAsPaid(invoice.id)"
+        class="bg-primary text-white px-4 py-2 rounded-full text-xs font-bold hover:bg-lightCyan"
+      >
+        Mark as Paid
+      </button>
+      }
+    </div>
+  </div>
+  <div class="bg-white dark:bg-extraLightBlack rounded-md p-4 sm:p-8">
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div class="col-span-2 sm:col-span-3">
+        <h1 class="text-primary text-xs dark:text-white font-bold">
+          <span class="text-darkCyan">#</span>{{ invoice.id }}
+        </h1>
+        <h2 class="text-lightCyan dark:text-extraLightBlue text-xs">
+          {{ invoice.description }}
+        </h2>
+      </div>
+      <div class="col-span-2 sm:col-span-1">
+        <h1 class="text-lightCyan dark:text-extraLightBlue text-xs">
+          {{ invoice.senderAddress.street }}
+        </h1>
+        <h1 class="text-lightCyan dark:text-extraLightBlue text-xs">
+          {{ invoice.senderAddress.city }}
+        </h1>
+        <h1 class="text-lightCyan dark:text-extraLightBlue text-xs">
+          {{ invoice.senderAddress.postCode }}
+        </h1>
+        <h1 class="text-lightCyan dark:text-extraLightBlue text-xs">
+          {{ invoice.senderAddress.country }}
+        </h1>
+      </div>
+      <div>
+        <div>
+          <h1 class="text-lightCyan dark:text-extraLightBlue text-xs">
+            Invoice Date
+          </h1>
+          <h2 class="text-primary text-sm dark:text-white font-bold">
+            {{ invoice.createdAt }}
+          </h2>
+        </div>
+        <div>
+          <h1 class="text-lightCyan dark:text-extraLightBlue text-xs">
+            {{ invoice.paymentDue }}
+          </h1>
+          <h2 class="text-primary text-sm dark:text-white font-bold">
+            20 Sep 2021
+          </h2>
+        </div>
+      </div>
+      <div>
+        <h1 class="text-lightCyan dark:text-extraLightBlue text-xs">BillTo</h1>
+        <h1 class="text-lightCyan dark:text-extraLightBlue text-xs">
+          {{ invoice.clientName }}
+        </h1>
+        <h2 class="text-lightCyan dark:text-extraLightBlue text-xs">
+          {{ invoice.clientAddress.street }}
+        </h2>
+        <h2 class="text-lightCyan dark:text-extraLightBlue text-xs">
+          {{ invoice.clientAddress.city }}
+        </h2>
+        <h2 class="text-lightCyan dark:text-extraLightBlue text-xs">
+          {{ invoice.clientAddress.postCode }}
+        </h2>
+        <h2 class="text-lightCyan dark:text-extraLightBlue text-xs">
+          {{ invoice.clientAddress.country }}
+        </h2>
+      </div>
+      <div class="col-span-2">
+        <h1 class="text-lightCyan dark:text-extraLightBlue text-xs">Sent to</h1>
+        <h1 class="text-primary text-sm dark:text-white font-bold">
+          {{ invoice.clientEmail }}
+        </h1>
+      </div>
+    </div>
+    @if (invoice.items) {
+    <div class="bg-extraLightBlue dark:bg-semiDarkBlue rounded-t-lg p-4 mt-4">
+      <table class="w-full">
+        <thead class="hidden sm:table-header-group">
+          <tr>
+            <th
+              class="p-2 text-left text-extraLightBlack dark:text-extraLightBlue"
+            >
+              Item Name
+            </th>
+            <th
+              class="p-2 text-left text-extraLightBlack dark:text-extraLightBlue"
+            >
+              QTY.
+            </th>
+            <th
+              class="p-2 text-left text-extraLightBlack dark:text-extraLightBlue"
+            >
+              Price
+            </th>
+            <th
+              class="p-2 text-left text-extraLightBlack dark:text-extraLightBlue"
+            >
+              Total
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of invoice.items; track $index) {
+          <tr class="sm:table-row flex flex-col sm:flex-row mb-2 sm:mb-0">
+            <td class="p-2 font-bold text-xs text-lightCyan dark:text-white">
+              {{ item.name }}
+            </td>
+            <td class="p-2 sm:hidden flex justify-between">
+              <span class="text-extraLightBlack dark:text-extraLightBlue"
+                >$ {{ item.price }} x {{ item.quantity }}</span
+              >
+            </td>
+            <td
+              class="p-2 sm:table-cell hidde text-extraLightBlack dark:text-extraLightBlue"
+            >
+              $ {{ item.price }}
+            </td>
+            <td
+              class="p-2 sm:table-cell hidden text-extraLightBlack dark:text-extraLightBlue"
+            >
+              {{ item.quantity }}
+            </td>
+            <td
+              class="p-2 sm:text-right text-xs sm:table-cell text-extraLightBlack dark:text-extraLightBlue"
+            >
+              $ {{ item.total }}
+            </td>
+          </tr>
+          }
+
+          <!-- <td colspan="2" class="p-2">Amount Due:</td>
+          <td colspan="2" class="p-2 sm:text-right text-left font-bold">
+            $ 14545
+          </td> -->
+        </tbody>
+      </table>
+    </div>
+    <div
+      class="bg-black text-white rounded-b-lg w-full flex justify-between p-8"
+    >
+      <h1 class="text-white text-xs">Amount Due</h1>
+      <h1 class="text-white text-2xl font-bold">
+        $ {{ calculateTotal(invoice.items) }}
+      </h1>
+    </div>
+    }
+  </div>
+  <div
+    class="w-full sm:w-10/12 lg:w-1/2 fixed bottom-0 sm:bottom-0 left-0 sm:hidden bg-white dark:bg-extraLightBlack flex justify-between p-4 custom-shadow z-50"
+  >
+    <button
+      type="button"
+      (click)="toggle()"
+      class="text-black dark:text-white dark:bg-semiDarkBlue bg-white px-4 py-2 rounded-full text-xs font-bold"
+    >
+      Edit
+    </button>
+    <button
+      type="button"
+      (click)="onDeleteInvoice(invoice.id)"
+      class="bg-danger text-white px-4 py-2 rounded-full text-xs font-bold"
+    >
+      Delete
+    </button>
+    @if (invoice.status !== 'paid') {
+    <button
+      type="submit"
+      class="bg-primary text-white px-4 py-2 rounded-full text-xs font-bold hover:bg-lightCyan"
+    >
+      Mark as Paid
+    </button>
+
+    }
+  </div>
+  @if (toggleNewInvoice) {
+  <div class="fixed top-0 left-0 w-full max-h-screen lg:left-[6.5%] z-50">
+    <edit-invoice-modal [invoice]="invoice" (toggleModal)="toggle()" />
+  </div>
+  }
+</div>
