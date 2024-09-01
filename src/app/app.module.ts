@@ -18,7 +18,9 @@ import { FormsModule } from '@angular/forms';
 import { NewInvoiceComponent } from './components/new-invoice/new-invoice.component';
 import { EmptyInvoicesComponent } from './components/empty-invoices/empty-invoices.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SingInvoiceComponent } from './pages/sing-invoice/sing-invoice.component';
+import { SingleInvoiceComponent } from './pages/single-invoice/single-invoice.component';
+import { EditInvoiceModalComponent } from './components/edit-invoice-modal/edit-invoice-modal.component';
+import { UIReducers } from './store/ui/ui.reducers';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,8 @@ import { SingInvoiceComponent } from './pages/sing-invoice/sing-invoice.componen
     InvoiceComponent,
     NewInvoiceComponent,
     EmptyInvoicesComponent,
-    SingInvoiceComponent,
+    SingleInvoiceComponent,
+    EditInvoiceModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,7 @@ import { SingInvoiceComponent } from './pages/sing-invoice/sing-invoice.componen
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    StoreModule.forRoot({ invoices: invoiceReducers }),
+    StoreModule.forRoot({ invoices: invoiceReducers, ui: UIReducers }),
     EffectsModule.forRoot([InvoicesEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states

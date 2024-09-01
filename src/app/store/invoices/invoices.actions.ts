@@ -24,3 +24,12 @@ export const setInvoiceFilters = createAction(
   '[Invoices] Set Filters',
   props<{ filters: InvoiceFilter[] }>()
 );
+export const deleteInvoice = createAction(
+  '[Invoices] Delete Invoice',
+  props<{ id: string }>()
+);
+
+export const markInvoiceAsPaid = createAction(
+  '[Invoices] Mark As Paid ',
+  props<{ id: string }>()
+);

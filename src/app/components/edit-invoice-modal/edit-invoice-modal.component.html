@@ -1,0 +1,412 @@
+<section class="bg-slate-300/10 backdrop-blur relative">
+  <form
+    [formGroup]="invoiceForm"
+    class="relative w-full sm:w-10/12 lg:w-1/2 px-8 sm:px-8 py-4 lg:py-2 my-8 sm:my-0 md:pt-14 mt-16 lg:mt-0 bg-white dark:bg-lightBlack overflow-y-auto max-h-screen"
+  >
+    <div
+      class="flex items-center gap-2 cursor-pointer sm:hidden"
+      (click)="discard()"
+    >
+      <img src="assets/icon-arrow-left.svg" alt="icon-arrow-left" />
+      <h1 class="text-black dark:text-white text-xs font-bold pt-1">Go back</h1>
+    </div>
+    <h1 class="text-black dark:text-white text-2xl font-bold my-4 md:my-2">
+      Edit <span class="text-primary">#</span>XM9141
+    </h1>
+
+    <div formGroupName="billFrom" class="mb-6 lg:mb-2">
+      <h3 class="text-sm text-primary font-semibold mb-2 lg:mb-1">Bill From</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="lg:col-span-3">
+          <div class="flex justify-between">
+            <label
+              class="text-xs text-darkCyan"
+              [ngClass]="{
+                  'text-danger': invoiceForm.get('billFrom.streetAddress')
+                    ?.touched && invoiceForm.get('billFrom.streetAddress')?.errors?.['required']
+                }"
+              >Street Address</label
+            >
+            <span
+              class="text-danger text-xs"
+              *ngIf="invoiceForm.get('billFrom.streetAddress')?.errors?.['required'] && (invoiceForm.get('billFrom.streetAddress')?.touched || invoiceForm.get('billFrom.streetAddress')?.dirty )"
+            >
+              Can't be empty
+            </span>
+          </div>
+          <input
+            formControlName="streetAddress"
+            type="text"
+            class="mt-1 block w-full border border-extraLightBlue rounded-md h-full lg:h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+          />
+        </div>
+        <div class="flex justify-between gap-4 mt-4 lg:col-span-2">
+          <div class="w-full">
+            <div class="flex justify-between">
+              <label
+                class="text-xs text-darkCyan"
+                [ngClass]="{
+                    'text-danger': invoiceForm.get('billFrom.city')
+                      ?.touched && invoiceForm.get('billFrom.city')?.errors?.['required']
+                  }"
+                >City</label
+              >
+              <span
+                class="text-danger text-xs"
+                *ngIf="invoiceForm.get('billFrom.city')?.errors?.['required'] && (invoiceForm.get('billFrom.city')?.touched || invoiceForm.get('billFrom.city')?.dirty )"
+              >
+                Can't be empty
+              </span>
+            </div>
+            <input
+              formControlName="city"
+              type="text"
+              class="mt-1 block w-full border border-extraLightBlue dark:border-semiDarkBlue dark:bg-extraLightBlack rounded-md h-full"
+            />
+          </div>
+          <div class="w-full">
+            <div class="flex justify-between">
+              <label
+                class="text-xs text-darkCyan"
+                [ngClass]="{
+                    'text-danger': invoiceForm.get('billFrom.postCode')
+                      ?.touched && invoiceForm.get('billFrom.postCode')?.errors?.['required']
+                  }"
+                >Post-code</label
+              >
+              <span
+                class="text-danger text-xs"
+                *ngIf="invoiceForm.get('billFrom.postCode')?.errors?.['required'] && (invoiceForm.get('billFrom.postCode')?.touched || invoiceForm.get('billFrom.postCode')?.dirty )"
+              >
+                Can't be empty
+              </span>
+            </div>
+            <input
+              formControlName="postCode"
+              type="text"
+              class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+            />
+          </div>
+        </div>
+        <div class="mt-4">
+          <div class="flex justify-between">
+            <label
+              class="text-xs text-darkCyan"
+              [ngClass]="{
+                  'text-danger': invoiceForm.get('billFrom.country')
+                    ?.touched && invoiceForm.get('billFrom.country')?.errors?.['required']
+                }"
+              >Country</label
+            >
+            <span
+              class="text-danger text-xs"
+              *ngIf="invoiceForm.get('billFrom.country')?.errors?.['required'] && (invoiceForm.get('billFrom.country')?.touched || invoiceForm.get('billFrom.country')?.dirty )"
+            >
+              Can't be empty
+            </span>
+          </div>
+          <input
+            formControlName="country"
+            type="text"
+            class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div formGroupName="billTo" class="mb-6 lg:mb-2 lg:mt-8">
+      <h3 class="text-sm text-primary font-semibold mb-2">Bill To</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="lg:col-span-3">
+          <div class="flex justify-between">
+            <label
+              class="text-xs text-darkCyan"
+              [ngClass]="{
+                  'text-danger': invoiceForm.get('billTo.clientName')
+                    ?.touched && invoiceForm.get('billTo.clientName')?.errors?.['required']
+                }"
+              >Client's Name</label
+            >
+            <span
+              class="text-danger text-xs"
+              *ngIf="invoiceForm.get('billTo.clientName')?.errors?.['required'] && (invoiceForm.get('billTo.clientName')?.touched || invoiceForm.get('billTo.clientName')?.dirty )"
+            >
+              Can't be empty
+            </span>
+          </div>
+          <input
+            formControlName="clientName"
+            type="text"
+            class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+          />
+        </div>
+        <div class="mt-4 lg:col-span-3">
+          <div class="flex justify-between">
+            <label
+              class="text-xs text-darkCyan"
+              [ngClass]="{
+                  'text-danger': invoiceForm.get('billTo.clientEmail')
+                    ?.touched && invoiceForm.get('billTo.clientEmail')?.errors?.['required']
+                }"
+              >Client's Email</label
+            >
+            <span
+              class="text-danger text-xs"
+              *ngIf="invoiceForm.get('billTo.clientEmail')?.errors?.['required'] && (invoiceForm.get('billTo.clientEmail')?.touched || invoiceForm.get('billTo.clientEmail')?.dirty )"
+            >
+              Can't be empty
+            </span>
+          </div>
+          <input
+            formControlName="clientEmail"
+            type="email"
+            class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+          />
+        </div>
+        <div class="mt-4 lg:col-span-3">
+          <div class="flex justify-between">
+            <label
+              class="text-xs text-darkCyan"
+              [ngClass]="{
+                  'text-danger': invoiceForm.get('billTo.streetAddress')
+                    ?.touched && invoiceForm.get('billTo.streetAddress')?.errors?.['required']
+                }"
+              >Street Address</label
+            >
+            <span
+              class="text-danger text-xs"
+              *ngIf="invoiceForm.get('billTo.streetAddress')?.errors?.['required'] && (invoiceForm.get('billTo.streetAddress')?.touched || invoiceForm.get('billTo.streetAddress')?.dirty )"
+            >
+              Can't be empty
+            </span>
+          </div>
+          <input
+            formControlName="streetAddress"
+            type="text"
+            class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+          />
+        </div>
+        <div class="flex justify-between gap-4 mt-4 lg:col-span-2">
+          <div class="w-full">
+            <div class="flex justify-between">
+              <label
+                class="text-xs text-darkCyan"
+                [ngClass]="{
+                    'text-danger': invoiceForm.get('billTo.city')
+                      ?.touched && invoiceForm.get('billTo.city')?.errors?.['required']
+                  }"
+                >City</label
+              >
+              <span
+                class="text-danger text-xs"
+                *ngIf="invoiceForm.get('billTo.city')?.errors?.['required'] && (invoiceForm.get('billTo.city')?.touched || invoiceForm.get('billTo.city')?.dirty )"
+              >
+                Can't be empty
+              </span>
+            </div>
+            <input
+              formControlName="city"
+              type="text"
+              class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+            />
+          </div>
+          <div class="w-full">
+            <div class="flex justify-between">
+              <label
+                class="text-xs text-darkCyan"
+                [ngClass]="{
+                    'text-danger': invoiceForm.get('billTo.postCode')
+                      ?.touched && invoiceForm.get('billTo.postCode')?.errors?.['required']
+                  }"
+                >Post Code</label
+              >
+              <span
+                class="text-danger text-xs"
+                *ngIf="invoiceForm.get('billTo.postCode')?.errors?.['required'] && (invoiceForm.get('billTo.postCode')?.touched || invoiceForm.get('billTo.postCode')?.dirty )"
+              >
+                Can't be empty
+              </span>
+            </div>
+            <input
+              formControlName="postCode"
+              type="text"
+              class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+            />
+          </div>
+        </div>
+        <div class="mt-4">
+          <div class="flex justify-between">
+            <label
+              class="text-xs text-darkCyan"
+              [ngClass]="{
+                  'text-danger': invoiceForm.get('billTo.country')
+                    ?.touched && invoiceForm.get('billTo.country')?.errors?.['required']
+                }"
+              >Country</label
+            >
+            <span
+              class="text-danger text-xs"
+              *ngIf="invoiceForm.get('billTo.country')?.errors?.['required'] && (invoiceForm.get('billTo.country')?.touched || invoiceForm.get('billTo.country')?.dirty )"
+            >
+              Can't be empty
+            </span>
+          </div>
+          <input
+            formControlName="country"
+            type="text"
+            class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="lg:mt-4">
+          <label class="block text-xs text-darkCyan">Invoice Date</label>
+          <input
+            formControlName="invoiceDate"
+            type="date"
+            class="mt-1 block w-full border border-extraLightBlue rounded-md h-full lg:h-4/6 px-4 py-0 dark:border-semiDarkBlue dark:bg-extraLightBlack"
+          />
+        </div>
+        <div class="mt-4">
+          <label class="block text-xs text-darkCyan">Payment Terms</label>
+          <div class="relative">
+            <select
+              formControlName="paymentTerms"
+              class="block appearance-none w-full bg-white border border-gray-300 px-4 py-2 pr-8 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 dark:border-semiDarkBlue dark:bg-extraLightBlack"
+            >
+              <option value="net-30">Next 30 Days</option>
+              <option value="net-60">Next 60 Days</option>
+              <option value="net-90">Next 90 Days</option>
+            </select>
+            <div
+              class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.2em"
+                height="1.2em"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="none"
+                  stroke="#7C5DFA"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.5"
+                  d="m7 10l5 5m0 0l5-5"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-6 h-10">
+      <div class="flex justify-between">
+        <label
+          class="text-xs text-darkCyan"
+          [ngClass]="{
+              'text-danger': invoiceForm.get('projectDescription')
+                ?.touched && invoiceForm.get('projectDescription')?.errors?.['required']
+            }"
+          >Project Description</label
+        >
+        <span
+          class="text-danger text-xs"
+          *ngIf="invoiceForm.get('projectDescription')?.errors?.['required'] && (invoiceForm.get('projectDescription')?.touched || invoiceForm.get('projectDescription')?.dirty )"
+        >
+          Can't be empty
+        </span>
+      </div>
+      <input
+        formControlName="projectDescription"
+        type="text"
+        class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+      />
+    </div>
+
+    <div formArrayName="items" class="mb-28 lg:mt-4 lg:mb-24">
+      <h3 class="text-lg font-semibold text-[#777F98] mb-2">Items List</h3>
+      <div
+        *ngFor="let item of items.controls; let i = index"
+        [formGroupName]="i"
+        class="my-4"
+      >
+        <div class="flex-1 h-10 mt-1 md:mt-12 lg:mt-8">
+          <label class="block text-xs font-medium text-darkCyan"
+            >Item Name</label
+          >
+          <input
+            formControlName="name"
+            type="text"
+            class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+          />
+        </div>
+        <div class="flex mt-8 gap-4 justify-between">
+          <div class="flex-1">
+            <label class="block text-sm font-medium text-darkCyan">Qty.</label>
+            <input
+              formControlName="quantity"
+              type="number"
+              class="mt-1 block w-1/2 border text-center text-darkCyan border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+            />
+          </div>
+          <div class="flex-1">
+            <label class="block text-sm font-medium text-darkCyan">Price</label>
+            <input
+              formControlName="price"
+              type="number"
+              class="mt-1 block w-full border text-center text-darkCyan border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+            />
+          </div>
+          <div class="flex-1">
+            <label class="block text-sm font-medium text-darkCyan">Total</label>
+            <input
+              formControlName="total"
+              type="text"
+              class="mt-1 block w-full text-center text-darkCyan bg-almostWhite rounded-md h-full dark:bg-black"
+              readonly
+            />
+          </div>
+          <button
+            type="button"
+            (click)="removeItem(i)"
+            class="text-red-500 hover:text-red-700"
+          >
+            <img src="assets/icon-delete.svg" alt="trash icon" />
+          </button>
+        </div>
+      </div>
+      <button
+        type="button"
+        (click)="addItem()"
+        class="bg-extraLightBlue w-full text-center text-xs py-2 rounded-full text-[#777F98] my-4 dark:bg-extraLightBlack"
+      >
+        + Add New Item
+      </button>
+    </div>
+
+    <div
+      class="w-full sm:w-10/12 lg:w-1/2 fixed bottom-14 sm:bottom-0 left-0 bg-white dark:bg-extraLightBlack flex justify-end gap-2 md:gap-4 p-4 custom-shadow z-50"
+    >
+      <button
+        type="button"
+        (click)="discard()"
+        class="bg-semiDarkBlue text-darkCyan px-4 py-2 rounded-full text-xs font-bold"
+      >
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="bg-primary text-extraLightBlue px-4 py-2 rounded-full text-xs font-bold"
+        (click)="onSubmit()"
+      >
+        Save Changes
+      </button>
+    </div>
+  </form>
+</section>

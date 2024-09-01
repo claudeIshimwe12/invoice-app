@@ -1,5 +1,6 @@
 <!--------------------- New Invoice -------------------->
-@if (toggleNewInvoice) {
+
+@if (toggleNewInvoice$ | async ) {
 <div class="fixed top-0 left-0 w-full max-h-screen lg:left-[6.5%] z-50">
   <new-invoice (toggleModal)="toggle()" />
 </div>
