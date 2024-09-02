@@ -20,7 +20,7 @@
     {{ invoice.clientName }}
   </p>
   <p class="text-black font-extrabold dark:text-white col-span-2 sm:col-span-1">
-    £ {{ invoice.total }}
+    £ {{ invoice.total | number : "1.2-2" }}
   </p>
 
   <div class="md:flex md:gap-4">

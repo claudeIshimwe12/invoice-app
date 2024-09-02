@@ -14,7 +14,7 @@
     <div class="flex justify-between gap-4">
       <div class="flex justify-between items-center relative gap-2">
         <h1
-          class="text-lg text-black dark:text-almostWhite sm:flex gap-2"
+          class="text-lg text-black dark:text-almostWhite sm:flex gap-2 cursor-pointer"
           (click)="toggleFilter()"
         >
           Filter <span class="hidden sm:block">by status</span>
@@ -23,6 +23,7 @@
         <img
           src="assets/icon-arrow-up.svg"
           alt="arrow up icon"
+          class="cursor-pointer"
           (click)="toggleFilter()"
         />
         <div
@@ -72,6 +73,7 @@
         <img
           src="assets/icon-arrow-down.svg"
           alt="arrow down icon"
+          class="cursor-pointer"
           (click)="toggleFilter()"
         />
 

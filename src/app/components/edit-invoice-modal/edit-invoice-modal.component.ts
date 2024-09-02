@@ -127,7 +127,7 @@ export class EditInvoiceModalComponent implements OnInit {
       status: 'pending',
       senderAddress: formValue.billFrom,
       clientAddress: formValue.billTo,
-      items: formValue.items,
+      items: this.invoice.items,
       total: this.calculateTotal(),
     };
   }

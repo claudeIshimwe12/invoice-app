@@ -7,6 +7,8 @@ import { selectFilteredInvoices } from '../../store/invoices/invoices.selectors'
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Item } from '../../models/item.interface';
 import * as InvoiceActions from '../../store/invoices/invoices.actions';
+import { selectConfirmDeleteModal } from '../../store/ui/ui.selectors';
+import * as UiActions from '../../store/ui/ui.actions';
 
 @Component({
   selector: 'app-single-invoice',
@@ -17,6 +19,7 @@ export class SingleInvoiceComponent implements OnInit {
   toggleNewInvoice: boolean = false;
   invoice$!: Observable<Invoice>;
   invoiceId!: string | null;
+  toggleConfirm$!: Observable<boolean>;
   constructor(
     private store: Store<AppState>,
     private router: ActivatedRoute,
@@ -37,12 +40,15 @@ export class SingleInvoiceComponent implements OnInit {
           invoices.find((invoice) => invoice.id === this.invoiceId) as Invoice
       )
     );
+    this.toggleConfirm$ = this.store.pipe(select(selectConfirmDeleteModal));
   }
   calculateTotal(items: Item[]): number {
     return items.reduce((sum, item) => sum + item.total, 0);
   }
   onDeleteInvoice(id: string): void {
     this.store.dispatch(InvoiceActions.deleteInvoice({ id }));
+    this.store.dispatch(UiActions.toggleConfirmDeleteModal());
+
     this.router2.navigate(['../..'], { relativeTo: this.router });
   }
   toggle(): void {
@@ -50,5 +56,8 @@ export class SingleInvoiceComponent implements OnInit {
   }
   markAsPaid(id: string): void {
     this.store.dispatch(InvoiceActions.markInvoiceAsPaid({ id }));
+  }
+  toggleConfirmDelete() {
+    this.store.dispatch(UiActions.toggleConfirmDeleteModal());
   }
 }
