@@ -8,3 +8,7 @@ export const selectModalVisibility = createSelector(
   selectUIState,
   (state) => state.modalVisible
 );
+export const selectConfirmDeleteModal = createSelector(
+  selectUIState,
+  (state) => state.confirmDeleteModal
+);
