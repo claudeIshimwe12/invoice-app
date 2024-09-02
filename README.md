@@ -1,27 +1,52 @@
-# InvoiceApp
+# Invoice Management System
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.6.
+This project is an Invoice Management System built with Angular and NgRx. It provides a user-friendly interface for managing invoices, including creating, reading, updating, and deleting invoices, as well as filtering and sorting by status. The application also features light/dark mode toggle and is fully responsive to adapt to different screen sizes.
 
-## Development server
+### You can preview the hosted version of this project by following this link
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+https://invoice-app-ci.netlify.app/
 
-## Code scaffolding
+## Table of Contents
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- [Features](#features)
+- [Getting Started](#getting-started)
 
-## Build
+## Features
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Functional Requirements (30 points)
 
-## Running unit tests
+- **CRUD Operations**: Ability to create, read, update, and delete invoices.
+- **Form Validations**: Proper validation for invoice creation and editing forms to ensure data integrity.
+- **Invoice Status Management**: Save draft invoices and mark pending invoices as paid.
+- **Filtering and Sorting**: Effective filtering and sorting of invoices based on status (paid, pending, draft).
+- **Light/Dark Mode**: Toggle between light and dark themes for a customizable user experience.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Technical Implementation (30 points)
 
-## Running end-to-end tests
+- **Angular and NgRx Integration**: Seamless integration of Angular framework with NgRx for state management.
+- **Core Angular Concepts**: Use of Angular components, services, routing, and reactive forms.
+- **State Management**: Efficient handling of application state using NgRx, ensuring data consistency and reactivity.
+- **Responsive Design**: The application is fully responsive, adapting to different screen sizes for optimal usability.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Getting Started
 
-## Further help
+### Prerequisites
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- [Node.js](https://nodejs.org/) (version 14 or above)
+- [Angular CLI](https://angular.io/cli) (version 12 or above)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/invoice-management-system.git
+   cd invoice-management-system
+   ```
+
+### Install Dependencies
+
+    npm install
+
+### Start the development server
+
+    ng serve

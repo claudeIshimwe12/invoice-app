@@ -46,5 +46,11 @@ export const invoiceReducers = createReducer(
         ? { ...invoice, status: 'paid' as InvoiceFilter }
         : invoice
     ),
+  })),
+  on(InvoiceActions.editInvoice, (state, { value }) => ({
+    ...state,
+    invoices: state.invoices.map((inv) =>
+      inv.id === value.id ? { ...value } : inv
+    ),
   }))
 );
