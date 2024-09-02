@@ -96,8 +96,8 @@
               type="text"
               class="mt-1 block w-full border rounded-md h-full dark:bg-extraLightBlack px-2 text-black dark:text-extraLightBlue"
               [ngClass]="{
-                'border-danger': invoiceForm.get('billFrom.streetAddress')?.errors?.['required'] && (invoiceForm.get('billFrom.streetAddress')?.touched || invoiceForm.get('billFrom.streetAddress')?.dirty ),
-                'dark:border-danger': invoiceForm.get('billFrom.streetAddress')?.errors?.['required'] && (invoiceForm.get('billFrom.streetAddress')?.touched || invoiceForm.get('billFrom.streetAddress')?.dirty )
+                'border-danger': invoiceForm.get('billFrom.postCode')?.errors?.['required'] && (invoiceForm.get('billFrom.postCode')?.touched || invoiceForm.get('billFrom.postCode')?.dirty ),
+                'dark:border-danger': invoiceForm.get('billFrom.postCode')?.errors?.['required'] && (invoiceForm.get('billFrom.postCode')?.touched || invoiceForm.get('billFrom.postCode')?.dirty )
               }"
             />
           </div>
@@ -222,8 +222,8 @@
             type="text"
             class="mt-1 block w-full border rounded-md h-full dark:bg-extraLightBlack px-2 text-black dark:text-extraLightBlue"
             [ngClass]="{
-              'border-danger': invoiceForm.get('billTo.streetAddress')?.errors?.['required'] && (invoiceForm.get('billFrom.streetAddress')?.touched || invoiceForm.get('billFrom.streetAddress')?.dirty ),
-              'dark:border-danger': invoiceForm.get('billFrom.streetAddress')?.errors?.['required'] && (invoiceForm.get('billFrom.streetAddress')?.touched || invoiceForm.get('billFrom.streetAddress')?.dirty )
+              'border-danger': invoiceForm.get('billTo.streetAddress')?.errors?.['required'] && (invoiceForm.get('billTo.streetAddress')?.touched || invoiceForm.get('billTo.streetAddress')?.dirty ),
+              'dark:border-danger': invoiceForm.get('billTo.streetAddress')?.errors?.['required'] && (invoiceForm.get('billTo.streetAddress')?.touched || invoiceForm.get('billTo.streetAddress')?.dirty )
             }"
           />
         </div>
@@ -380,8 +380,8 @@
         type="text"
         class="mt-1 block w-full border rounded-md h-full dark:bg-extraLightBlack px-2 text-black dark:text-extraLightBlue"
         [ngClass]="{
-          'border-danger': invoiceForm.get('billFrom.streetAddress')?.errors?.['required'] && (invoiceForm.get('billFrom.streetAddress')?.touched || invoiceForm.get('billFrom.streetAddress')?.dirty ),
-          'dark:border-danger': invoiceForm.get('billFrom.streetAddress')?.errors?.['required'] && (invoiceForm.get('billFrom.streetAddress')?.touched || invoiceForm.get('billFrom.streetAddress')?.dirty )
+          'border-danger': invoiceForm.get('projectDescription')?.errors?.['required'] && (invoiceForm.get('projectDescription')?.touched || invoiceForm.get('projectDescription')?.dirty ),
+          'dark:border-danger': invoiceForm.get('projectDescription')?.errors?.['required'] && (invoiceForm.get('projectDescription')?.touched || invoiceForm.get('projectDescription')?.dirty )
         }"
       />
     </div>

@@ -1,7 +1,9 @@
 <!--------------------- New Invoice -------------------->
 
 @if (toggleNewInvoice$ | async ) {
-<div class="fixed top-0 left-0 w-full max-h-screen lg:left-[6.5%] z-50">
+<div
+  class="fixed top-0 left-0 w-full max-h-screen lg:left-[6.5%] z-50 transition-all"
+>
   <new-invoice (toggleModal)="toggle()" />
 </div>
 }

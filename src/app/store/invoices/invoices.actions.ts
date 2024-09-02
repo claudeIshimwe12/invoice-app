@@ -33,3 +33,8 @@ export const markInvoiceAsPaid = createAction(
   '[Invoices] Mark As Paid ',
   props<{ id: string }>()
 );
+
+export const editInvoice = createAction(
+  '[Invoices] Edit Invoice',
+  props<{ value: Invoice }>()
+);

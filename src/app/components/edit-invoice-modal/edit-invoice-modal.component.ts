@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../models/app-state.interface';
@@ -10,7 +10,7 @@ import { Invoice } from '../../models/invoice.interface';
   templateUrl: './edit-invoice-modal.component.html',
   styleUrl: './edit-invoice-modal.component.css',
 })
-export class EditInvoiceModalComponent {
+export class EditInvoiceModalComponent implements OnInit {
   @Output() toggleModal = new EventEmitter<boolean>();
   @Input({ required: true }) invoice: Invoice = {} as Invoice;
   invoiceForm: FormGroup;
@@ -31,6 +31,27 @@ export class EditInvoiceModalComponent {
     });
   }
 
+  ngOnInit(): void {
+    this.invoiceForm.patchValue({
+      billFrom: {
+        streetAddress: this.invoice.senderAddress.street,
+        city: this.invoice.senderAddress.city,
+        postCode: this.invoice.senderAddress.postCode,
+        country: this.invoice.senderAddress.country,
+      },
+      billTo: {
+        clientName: this.invoice.clientName,
+        clientEmail: this.invoice.clientEmail,
+        streetAddress: this.invoice.clientAddress.street,
+        city: this.invoice.clientAddress.city,
+        postCode: this.invoice.clientAddress.postCode,
+        country: this.invoice.clientAddress.country,
+      },
+      invoiceDate: this.invoice.createdAt,
+      paymentTerms: this.invoice.paymentTerms,
+      projectDescription: this.invoice.description,
+    });
+  }
   private createAddressGroup(): FormGroup {
     return this.fb.group({
       streetAddress: ['', Validators.required],
@@ -81,19 +102,17 @@ export class EditInvoiceModalComponent {
   }
 
   onSubmit(): void {
-    console.log('form data', this.invoiceForm.value);
-    console.log('Invoice', this.invoice);
     if (this.invoiceForm.invalid) {
       this.markFormGroupTouched(this.invoiceForm);
       return;
     }
 
-    const invoice = this.buildInvoice('pending');
-    this.store.dispatch(InvoiceActions.addNewInvoice({ value: invoice }));
-    this.toggleModal.emit();
+    const invoice = this.buildInvoice();
+    console.log('Invoice', invoice);
+    this.store.dispatch(InvoiceActions.markInvoiceAsPaid({ id: invoice.id }));
   }
 
-  private buildInvoice(status: 'pending' | 'draft'): Invoice {
+  private buildInvoice(): Invoice {
     const formValue = this.invoiceForm.value;
 
     return {
@@ -104,7 +123,7 @@ export class EditInvoiceModalComponent {
       paymentTerms: formValue.paymentTerms[0],
       clientName: formValue.billTo.clientName,
       clientEmail: formValue.billTo.clientEmail,
-      status,
+      status: formValue.status,
       senderAddress: formValue.billFrom,
       clientAddress: formValue.billTo,
       items: formValue.items,
