@@ -50,6 +50,7 @@ export class EditInvoiceModalComponent implements OnInit {
       invoiceDate: this.invoice.createdAt,
       paymentTerms: this.invoice.paymentTerms,
       projectDescription: this.invoice.description,
+      items: this.invoice.items,
     });
   }
   private createAddressGroup(): FormGroup {
@@ -83,9 +84,9 @@ export class EditInvoiceModalComponent implements OnInit {
 
   private createItemGroup(): FormGroup {
     const itemGroup = this.fb.group({
-      name: ['', Validators.required],
-      quantity: [1, [Validators.required, Validators.min(1)]],
-      price: [0, [Validators.required, Validators.min(0)]],
+      name: [],
+      quantity: [],
+      price: [],
       total: [{ value: 0, disabled: true }],
     });
 
@@ -108,22 +109,22 @@ export class EditInvoiceModalComponent implements OnInit {
     }
 
     const invoice = this.buildInvoice();
-    console.log('Invoice', invoice);
-    this.store.dispatch(InvoiceActions.markInvoiceAsPaid({ id: invoice.id }));
+    this.store.dispatch(InvoiceActions.editInvoice({ value: invoice }));
+    this.toggleModal.emit();
   }
 
   private buildInvoice(): Invoice {
     const formValue = this.invoiceForm.value;
 
     return {
-      id: this.generateRandomId(),
+      id: this.invoice.id,
       createdAt: this.getCurrentDate(),
       paymentDue: formValue.invoiceDate,
       description: formValue.projectDescription,
       paymentTerms: formValue.paymentTerms[0],
       clientName: formValue.billTo.clientName,
       clientEmail: formValue.billTo.clientEmail,
-      status: formValue.status,
+      status: 'pending',
       senderAddress: formValue.billFrom,
       clientAddress: formValue.billTo,
       items: formValue.items,
@@ -155,15 +156,6 @@ export class EditInvoiceModalComponent implements OnInit {
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
-  }
-
-  private generateRandomId(): string {
-    const letters = String.fromCharCode(
-      Math.floor(Math.random() * 26) + 65,
-      Math.floor(Math.random() * 26) + 65
-    );
-    const digits = Math.floor(1000 + Math.random() * 9000).toString();
-    return letters + digits;
   }
 
   discard(): void {
