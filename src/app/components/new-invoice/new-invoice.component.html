@@ -18,15 +18,16 @@
       <h3 class="text-sm text-primary font-semibold mb-2 lg:mb-1">Bill From</h3>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div class="lg:col-span-3">
-          <div class="flex justify-between">
+          <div class="flex justify-between text-darkCyan">
             <label
-              class="text-xs text-darkCyan"
+              class="text-xs"
               [ngClass]="{
-                'text-danger': invoiceForm.get('billFrom.streetAddress')
-                  ?.touched && invoiceForm.get('billFrom.streetAddress')?.errors?.['required']
-              }"
-              >Street Address</label
+              'text-danger': invoiceForm.get('billFrom.streetAddress')?.errors?.['required']
+                && (invoiceForm.get('billFrom.streetAddress')?.touched || invoiceForm.get('billFrom.streetAddress')?.dirty)
+            }"
             >
+              Street Address
+            </label>
             <span
               class="text-danger text-xs"
               *ngIf="invoiceForm.get('billFrom.streetAddress')?.errors?.['required'] && (invoiceForm.get('billFrom.streetAddress')?.touched || invoiceForm.get('billFrom.streetAddress')?.dirty )"
@@ -37,17 +38,21 @@
           <input
             formControlName="streetAddress"
             type="text"
-            class="mt-1 block w-full border border-extraLightBlue rounded-md h-full lg:h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+            class="mt-1 block w-full border rounded-md h-full lg:h-full dark:bg-extraLightBlack px-2 text-black dark:text-extraLightBlue"
+            [ngClass]="{
+              'border-danger': invoiceForm.get('billFrom.streetAddress')?.errors?.['required'] && (invoiceForm.get('billFrom.streetAddress')?.touched || invoiceForm.get('billFrom.streetAddress')?.dirty ),
+              'dark:border-danger': invoiceForm.get('billFrom.streetAddress')?.errors?.['required'] && (invoiceForm.get('billFrom.streetAddress')?.touched || invoiceForm.get('billFrom.streetAddress')?.dirty )
+            }"
           />
         </div>
         <div class="flex justify-between gap-4 mt-4 lg:col-span-2">
           <div class="w-full">
-            <div class="flex justify-between">
+            <div class="flex justify-between text-darkCyan">
               <label
-                class="text-xs text-darkCyan"
+                class="text-xs"
                 [ngClass]="{
-                  'text-danger': invoiceForm.get('billFrom.city')
-                    ?.touched && invoiceForm.get('billFrom.city')?.errors?.['required']
+                  'text-danger': invoiceForm.get('billFrom.city')?.errors?.['required']
+                    && (invoiceForm.get('billFrom.city')?.touched || invoiceForm.get('billFrom.city')?.dirty)
                 }"
                 >City</label
               >
@@ -61,16 +66,21 @@
             <input
               formControlName="city"
               type="text"
-              class="mt-1 block w-full border border-extraLightBlue dark:border-semiDarkBlue dark:bg-extraLightBlack rounded-md h-full"
+              class="mt-1 block w-full border dark:bg-extraLightBlack rounded-md h-full px-2 text-black dark:text-extraLightBlue"
+              [ngClass]="{
+                'border-semiDarkBlue': !invoiceForm.get('billFrom.city')?.errors?.['required'] && (invoiceForm.get('billFrom.city')?.touched || invoiceForm.get('billFrom.city')?.dirty ),
+                'border-danger': invoiceForm.get('billFrom.city')?.errors?.['required'] && (invoiceForm.get('billFrom.city')?.touched || invoiceForm.get('billFrom.city')?.dirty ),
+                'dark:border-danger': invoiceForm.get('billFrom.city')?.errors?.['required'] && (invoiceForm.get('billFrom.city')?.touched || invoiceForm.get('billFrom.city')?.dirty )
+              }"
             />
           </div>
           <div class="w-full">
-            <div class="flex justify-between">
+            <div class="flex justify-between text-darkCyan">
               <label
-                class="text-xs text-darkCyan"
+                class="text-xs"
                 [ngClass]="{
-                  'text-danger': invoiceForm.get('billFrom.postCode')
-                    ?.touched && invoiceForm.get('billFrom.postCode')?.errors?.['required']
+                  'text-danger': invoiceForm.get('billFrom.postCode')?.errors?.['required']
+                    && (invoiceForm.get('billFrom.postCode')?.touched || invoiceForm.get('billFrom.postCode')?.dirty)
                 }"
                 >Post-code</label
               >
@@ -84,17 +94,21 @@
             <input
               formControlName="postCode"
               type="text"
-              class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+              class="mt-1 block w-full border rounded-md h-full dark:bg-extraLightBlack px-2 text-black dark:text-extraLightBlue"
+              [ngClass]="{
+                'border-danger': invoiceForm.get('billFrom.streetAddress')?.errors?.['required'] && (invoiceForm.get('billFrom.streetAddress')?.touched || invoiceForm.get('billFrom.streetAddress')?.dirty ),
+                'dark:border-danger': invoiceForm.get('billFrom.streetAddress')?.errors?.['required'] && (invoiceForm.get('billFrom.streetAddress')?.touched || invoiceForm.get('billFrom.streetAddress')?.dirty )
+              }"
             />
           </div>
         </div>
         <div class="mt-4">
-          <div class="flex justify-between">
+          <div class="flex justify-between text-darkCyan">
             <label
-              class="text-xs text-darkCyan"
+              class="text-xs"
               [ngClass]="{
-                'text-danger': invoiceForm.get('billFrom.country')
-                  ?.touched && invoiceForm.get('billFrom.country')?.errors?.['required']
+                'text-danger': invoiceForm.get('billFrom.country')?.errors?.['required']
+                  && (invoiceForm.get('billFrom.country')?.touched || invoiceForm.get('billFrom.country')?.dirty)
               }"
               >Country</label
             >
@@ -108,7 +122,11 @@
           <input
             formControlName="country"
             type="text"
-            class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+            class="mt-1 block w-full border rounded-md h-full dark:bg-extraLightBlack px-2 text-black dark:text-extraLightBlue"
+            [ngClass]="{
+              'border-danger': invoiceForm.get('billFrom.country')?.errors?.['required'] && (invoiceForm.get('billFrom.country')?.touched || invoiceForm.get('billFrom.country')?.dirty ),
+              'dark:border-danger': invoiceForm.get('billFrom.country')?.errors?.['required'] && (invoiceForm.get('billFrom.country')?.touched || invoiceForm.get('billFrom.country')?.dirty )
+            }"
           />
         </div>
       </div>
@@ -118,12 +136,12 @@
       <h3 class="text-sm text-primary font-semibold mb-2">Bill To</h3>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div class="lg:col-span-3">
-          <div class="flex justify-between">
+          <div class="flex justify-between text-darkCyan">
             <label
-              class="text-xs text-darkCyan"
+              class="text-xs"
               [ngClass]="{
-                'text-danger': invoiceForm.get('billTo.clientName')
-                  ?.touched && invoiceForm.get('billTo.clientName')?.errors?.['required']
+                'text-danger': invoiceForm.get('billTo.clientName')?.errors?.['required']
+                  && (invoiceForm.get('billTo.clientName')?.touched || invoiceForm.get('billTo.clientName')?.dirty)
               }"
               >Client's Name</label
             >
@@ -137,22 +155,31 @@
           <input
             formControlName="clientName"
             type="text"
-            class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+            class="mt-1 block w-full border rounded-md h-full dark:bg-extraLightBlack px-2 text-black dark:text-extraLightBlue"
+            [ngClass]="{
+              'border-danger': invoiceForm.get('billTo.clientName')?.errors?.['required'] && (invoiceForm.get('billTo.clientName')?.touched || invoiceForm.get('billTo.clientNames')?.dirty ),
+              'dark:border-danger': invoiceForm.get('billTo.clientName')?.errors?.['required'] && (invoiceForm.get('billTo.clientName')?.touched || invoiceForm.get('billTo.clientName')?.dirty )
+            }"
           />
         </div>
         <div class="mt-4 lg:col-span-3">
-          <div class="flex justify-between">
+          <div class="flex justify-between text-darkCyan">
             <label
-              class="text-xs text-darkCyan"
+              class="text-xs"
               [ngClass]="{
-                'text-danger': invoiceForm.get('billTo.clientEmail')
-                  ?.touched && invoiceForm.get('billTo.clientEmail')?.errors?.['required']
+                'text-danger':
+                  invoiceForm.get('billTo.clientEmail')?.touched &&
+                  invoiceForm.get('billTo.clientEmail')?.errors
               }"
               >Client's Email</label
             >
             <span
               class="text-danger text-xs"
-              *ngIf="invoiceForm.get('billTo.clientEmail')?.errors?.['required'] && (invoiceForm.get('billTo.clientEmail')?.touched || invoiceForm.get('billTo.clientEmail')?.dirty )"
+              *ngIf="
+                invoiceForm.get('billTo.clientEmail')?.errors &&
+                (invoiceForm.get('billTo.clientEmail')?.touched ||
+                  invoiceForm.get('billTo.clientEmail')?.dirty)
+              "
             >
               Can't be empty
             </span>
@@ -160,13 +187,23 @@
           <input
             formControlName="clientEmail"
             type="email"
-            class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+            class="mt-1 block w-full border rounded-md h-full dark:bg-extraLightBlack px-2 text-black dark:text-extraLightBlue"
+            [ngClass]="{
+              'border-danger':
+                invoiceForm.get('billTo.clientEmail')?.errors &&
+                (invoiceForm.get('billTo.clientEmail')?.touched ||
+                  invoiceForm.get('billTo.clientEmail')?.dirty),
+              'dark:border-danger':
+                invoiceForm.get('billTo.clientEmail')?.errors &&
+                (invoiceForm.get('billTo.clientEmail')?.touched ||
+                  invoiceForm.get('billTo.clientEmail')?.dirty)
+            }"
           />
         </div>
         <div class="mt-4 lg:col-span-3">
-          <div class="flex justify-between">
+          <div class="flex justify-between text-darkCyan">
             <label
-              class="text-xs text-darkCyan"
+              class="text-xs"
               [ngClass]="{
                 'text-danger': invoiceForm.get('billTo.streetAddress')
                   ?.touched && invoiceForm.get('billTo.streetAddress')?.errors?.['required']
@@ -183,14 +220,18 @@
           <input
             formControlName="streetAddress"
             type="text"
-            class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+            class="mt-1 block w-full border rounded-md h-full dark:bg-extraLightBlack px-2 text-black dark:text-extraLightBlue"
+            [ngClass]="{
+              'border-danger': invoiceForm.get('billTo.streetAddress')?.errors?.['required'] && (invoiceForm.get('billFrom.streetAddress')?.touched || invoiceForm.get('billFrom.streetAddress')?.dirty ),
+              'dark:border-danger': invoiceForm.get('billFrom.streetAddress')?.errors?.['required'] && (invoiceForm.get('billFrom.streetAddress')?.touched || invoiceForm.get('billFrom.streetAddress')?.dirty )
+            }"
           />
         </div>
         <div class="flex justify-between gap-4 mt-4 lg:col-span-2">
           <div class="w-full">
-            <div class="flex justify-between">
+            <div class="flex justify-between text-darkCyan">
               <label
-                class="text-xs text-darkCyan"
+                class="text-xs"
                 [ngClass]="{
                   'text-danger': invoiceForm.get('billTo.city')
                     ?.touched && invoiceForm.get('billTo.city')?.errors?.['required']
@@ -207,13 +248,17 @@
             <input
               formControlName="city"
               type="text"
-              class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+              class="mt-1 block w-full border rounded-md h-full dark:bg-extraLightBlack px-2 text-black dark:text-extraLightBlue"
+              [ngClass]="{
+                'border-danger': invoiceForm.get('billTo.postCode')?.errors?.['required'] && (invoiceForm.get('billTo.postCode')?.touched || invoiceForm.get('billTo.postCode')?.dirty ),
+                'dark:border-danger': invoiceForm.get('billTo.postCode')?.errors?.['required'] && (invoiceForm.get('billTo.postCode')?.touched || invoiceForm.get('billTo.postCode')?.dirty )
+              }"
             />
           </div>
           <div class="w-full">
-            <div class="flex justify-between">
+            <div class="flex justify-between text-darkCyan">
               <label
-                class="text-xs text-darkCyan"
+                class="text-xs"
                 [ngClass]="{
                   'text-danger': invoiceForm.get('billTo.postCode')
                     ?.touched && invoiceForm.get('billTo.postCode')?.errors?.['required']
@@ -230,14 +275,18 @@
             <input
               formControlName="postCode"
               type="text"
-              class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+              class="mt-1 block w-full border rounded-md h-full dark:bg-extraLightBlack px-2 text-black dark:text-extraLightBlue"
+              [ngClass]="{
+                'border-danger': invoiceForm.get('billFrom.streetAddress')?.errors?.['required'] && (invoiceForm.get('billFrom.streetAddress')?.touched || invoiceForm.get('billFrom.streetAddress')?.dirty ),
+                'dark:border-danger': invoiceForm.get('billFrom.streetAddress')?.errors?.['required'] && (invoiceForm.get('billFrom.streetAddress')?.touched || invoiceForm.get('billFrom.streetAddress')?.dirty )
+              }"
             />
           </div>
         </div>
         <div class="mt-4">
-          <div class="flex justify-between">
+          <div class="flex justify-between text-darkCyan">
             <label
-              class="text-xs text-darkCyan"
+              class="text-xs"
               [ngClass]="{
                 'text-danger': invoiceForm.get('billTo.country')
                   ?.touched && invoiceForm.get('billTo.country')?.errors?.['required']
@@ -254,7 +303,11 @@
           <input
             formControlName="country"
             type="text"
-            class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+            class="mt-1 block w-full border rounded-md h-full dark:bg-extraLightBlack px-2 text-black dark:text-extraLightBlue"
+            [ngClass]="{
+              'border-danger': invoiceForm.get('billFrom.streetAddress')?.errors?.['required'] && (invoiceForm.get('billFrom.streetAddress')?.touched || invoiceForm.get('billFrom.streetAddress')?.dirty ),
+              'dark:border-danger': invoiceForm.get('billFrom.streetAddress')?.errors?.['required'] && (invoiceForm.get('billFrom.streetAddress')?.touched || invoiceForm.get('billFrom.streetAddress')?.dirty )
+            }"
           />
         </div>
       </div>
@@ -267,7 +320,7 @@
           <input
             formControlName="invoiceDate"
             type="date"
-            class="mt-1 block w-full border border-extraLightBlue rounded-md h-full lg:h-4/6 px-4 py-0 dark:border-semiDarkBlue dark:bg-extraLightBlack"
+            class="mt-1 block w-full border border-extraLightBlue rounded-md h-full lg:h-4/6 px-4 py-0 dark:border-semiDarkBlue dark:bg-extraLightBlack text-black dark:text-extraLightBlue"
           />
         </div>
         <div class="mt-4">
@@ -275,7 +328,7 @@
           <div class="relative">
             <select
               formControlName="paymentTerms"
-              class="block appearance-none w-full bg-white border border-gray-300 px-4 py-2 pr-8 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 dark:border-semiDarkBlue dark:bg-extraLightBlack"
+              class="block appearance-none w-full bg-white border border-gray-300 px-4 py-2 pr-8 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 dark:border-semiDarkBlue dark:bg-extraLightBlack text-black dark:text-extraLightBlue"
             >
               <option value="net-30">Next 30 Days</option>
               <option value="net-60">Next 60 Days</option>
@@ -306,9 +359,9 @@
     </div>
 
     <div class="mb-6 h-10">
-      <div class="flex justify-between">
+      <div class="flex justify-between text-darkCyan">
         <label
-          class="text-xs text-darkCyan"
+          class="text-xs"
           [ngClass]="{
             'text-danger': invoiceForm.get('projectDescription')
               ?.touched && invoiceForm.get('projectDescription')?.errors?.['required']
@@ -325,7 +378,11 @@
       <input
         formControlName="projectDescription"
         type="text"
-        class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+        class="mt-1 block w-full border rounded-md h-full dark:bg-extraLightBlack px-2 text-black dark:text-extraLightBlue"
+        [ngClass]="{
+          'border-danger': invoiceForm.get('billFrom.streetAddress')?.errors?.['required'] && (invoiceForm.get('billFrom.streetAddress')?.touched || invoiceForm.get('billFrom.streetAddress')?.dirty ),
+          'dark:border-danger': invoiceForm.get('billFrom.streetAddress')?.errors?.['required'] && (invoiceForm.get('billFrom.streetAddress')?.touched || invoiceForm.get('billFrom.streetAddress')?.dirty )
+        }"
       />
     </div>
 
@@ -343,7 +400,7 @@
           <input
             formControlName="name"
             type="text"
-            class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack"
+            class="mt-1 block w-full border border-extraLightBlue rounded-md h-full dark:border-semiDarkBlue dark:bg-extraLightBlack px-2 text-black dark:text-extraLightBlue"
           />
         </div>
         <div class="flex mt-8 gap-4 justify-between">
