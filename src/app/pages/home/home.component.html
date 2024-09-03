@@ -1,12 +1,12 @@
 <!--------------------- New Invoice -------------------->
 
-@if (toggleNewInvoice$ | async ) {
 <div
-  class="fixed top-0 left-0 w-full max-h-screen lg:left-[6.5%] z-50 before:translate-x-full after:translate-x-0 duration-1000"
+  class="fixed top-0 left-0 w-full max-h-screen lg:left-[6.5%] z-50 pop-up"
+  [ngClass]="{ 'pop-up-colapsed': toggleNewInvoice$ | async }"
 >
   <new-invoice (toggleModal)="toggle()" />
 </div>
-}
+
 <app-filter (onAddNew)="toggle()" [invoices$]="pendingInvoices$"></app-filter>
 
 <div
