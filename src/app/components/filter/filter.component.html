@@ -7,7 +7,8 @@
         Invoices
       </h1>
       <h4 class="text-darkCyan text-sm sm:flex sm:gap-2 mt-2">
-        <span class="hidden sm:block">There are</span> 4
+        <span class="hidden sm:block">There are</span>
+        <span *ngIf="invoices$ | async as invoices">{{ invoices.length }}</span>
         <span class="hidden sm:block">pending</span> invoices
       </h4>
     </div>

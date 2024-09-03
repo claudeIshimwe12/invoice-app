@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Invoice } from '../../models/invoice.interface';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 import { selectFilteredInvoices } from '../../store/invoices/invoices.selectors';
 import { AppState } from '../../models/app-state.interface';
@@ -17,8 +17,12 @@ export class HomeComponent {
   invoices$!: Observable<Invoice[]>;
   loader$!: Observable<boolean>;
   toggleNewInvoice$: Observable<boolean>;
+  pendingInvoices$!: Observable<Invoice[]>;
   constructor(private store: Store<AppState>, private router: Router) {
     this.invoices$ = this.store.pipe(select(selectFilteredInvoices));
+    this.pendingInvoices$ = this.invoices$.pipe(
+      map((data) => data.filter((inv) => inv.status == 'pending'))
+    );
     this.toggleNewInvoice$ = this.store.pipe(select(selectModalVisibility));
   }
 

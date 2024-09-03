@@ -3,6 +3,8 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../models/app-state.interface';
 import * as InvoiceActions from '../../store/invoices/invoices.actions';
 import { InvoiceFilter } from '../../models/invoice-state.interface';
+import { Observable } from 'rxjs';
+import { Invoice } from '../../models/invoice.interface';
 
 @Component({
   selector: 'app-filter',
@@ -10,10 +12,12 @@ import { InvoiceFilter } from '../../models/invoice-state.interface';
   styleUrl: './filter.component.css',
 })
 export class FilterComponent {
+  @Input() invoices$!: Observable<Invoice[]>;
   isFilterOn: boolean = false;
   @Output() onAddNew: EventEmitter<boolean> = new EventEmitter();
   activeFilters: InvoiceFilter[] = [];
   constructor(private store: Store<AppState>) {}
+
   toggleFilter() {
     this.isFilterOn = !this.isFilterOn;
   }
