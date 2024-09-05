@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 import { Invoice } from '../models/invoice.interface';
 
 @Injectable({
@@ -11,7 +11,12 @@ export class InvoiceService {
 
   constructor(private http: HttpClient) {}
   getInvoices(): Observable<Invoice[]> {
-    return this.http.get<Invoice[]>(this.url);
+    return this.http.get<Invoice[]>(this.url).pipe(
+      catchError((error) => {
+        console.error('Error loading Invoices:', error);
+        return of([]);
+      })
+    );
   }
   addInvoice(): Observable<Invoice[]> {
     const invoice: Invoice = {

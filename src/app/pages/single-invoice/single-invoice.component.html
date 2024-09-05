@@ -238,16 +238,10 @@
     }
   </div>
 
+  @if (toggleConfirm$ | async) {
   <div
-    class="fixed top-0 left-0 w-full max-h-screen lg:left-[6.5%] z-50 pop-up"
-    [ngClass]="{ 'pop-up-colapsed': toggleNewInvoice }"
-  >
-    <edit-invoice-modal [invoice]="invoice" (toggleModal)="toggle()" />
-  </div>
-
-  <div
-    class="h-full w-full top-0 left-0 bg-slate-300/50 backdrop-blur-xs z-50 border-2 mt-8 lg:mt-0 transition ease-out duration-300 transform"
-    [ngClass]="{ fixed: toggleConfirm$ | async }"
+    class="h-full w-full fixed top-0 left-0 bg-slate-300/50 backdrop-blur-xs z-50 border-2 lg:mt-0 transition ease-out duration-300 transform"
+    (click)="toggleConfirmDelete()"
   >
     <div class="flex items-center justify-center w-full h-full">
       <div
@@ -260,13 +254,12 @@
         </p>
         <div class="flex justify-end gap-2">
           <button
-            class="px-4 py-2 text-xs rounded-full bg-extraLightBlue text-primary"
-            (click)="toggleConfirmDelete()"
+            class="px-4 py-2 text-xs rounded-full bg-extraLightBlue text-primary z-50"
           >
             Cancel
           </button>
           <button
-            class="px-4 py-2 text-xs rounded-full bg-danger text-white"
+            class="px-4 py-2 text-xs rounded-full bg-danger text-white z-40"
             (click)="onDeleteInvoice(invoice.id)"
           >
             Delete
@@ -275,4 +268,5 @@
       </div>
     </div>
   </div>
+  }
 </div>

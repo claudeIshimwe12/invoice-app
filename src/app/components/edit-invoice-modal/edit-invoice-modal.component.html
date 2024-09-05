@@ -1,4 +1,4 @@
-<section class="bg-slate-300/10 backdrop-blur relative" >
+<section class="bg-slate-300/10 backdrop-blur relative">
   <form
     [formGroup]="invoiceForm"
     class="relative w-full sm:w-10/12 lg:w-1/2 px-8 sm:px-8 py-4 lg:py-2 my-8 sm:my-0 md:pt-14 mt-16 lg:mt-0 bg-white dark:bg-lightBlack overflow-y-auto max-h-screen"
@@ -444,25 +444,6 @@
         class="bg-extraLightBlue w-full text-center text-xs py-2 rounded-full text-[#777F98] my-4 dark:bg-extraLightBlack"
       >
         + Add New Item
-      </button>
-    </div>
-
-    <div
-      class="w-full sm:w-10/12 lg:w-1/2 fixed bottom-14 sm:bottom-0 left-0 bg-white dark:bg-extraLightBlack flex justify-end gap-2 md:gap-4 p-4 custom-shadow z-50"
-    >
-      <button
-        type="button"
-        (click)="discard()"
-        class="bg-semiDarkBlue text-darkCyan px-4 py-2 rounded-full text-xs font-bold"
-      >
-        Cancel
-      </button>
-      <button
-        type="submit"
-        class="bg-primary text-extraLightBlue px-4 py-2 rounded-full text-xs font-bold"
-        (click)="onSubmit()"
-      >
-        Save Changes
       </button>
     </div>
   </form>
