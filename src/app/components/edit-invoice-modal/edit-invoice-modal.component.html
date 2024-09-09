@@ -446,5 +446,24 @@
         + Add New Item
       </button>
     </div>
+    <div
+      class="w-full sm:w-10/12 lg:w-1/2 fixed bottom-14 sm:bottom-0 left-0 bg-white dark:bg-extraLightBlack flex justify-end gap-2 p-4 custom-shadow z-50"
+    >
+      <button
+        type="button"
+        class="text-black bg-extraLightBlue px-4 py-2 rounded-full text-xs font-bold"
+        (click)="discard()"
+      >
+        Cancel
+      </button>
+
+      <button
+        type="submit"
+        class="bg-primary text-extraLightBlue px-4 py-2 rounded-full text-xs font-bold"
+        (click)="onSubmit()"
+      >
+        Save Changes
+      </button>
+    </div>
   </form>
 </section>

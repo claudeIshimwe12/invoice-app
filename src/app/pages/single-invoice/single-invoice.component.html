@@ -238,6 +238,12 @@
     }
   </div>
 
+  <div
+    class="fixed top-0 left-0 w-full max-h-screen lg:left-[6.5%] z-50 pop-up"
+    [ngClass]="{ 'pop-up-colapsed': toggleNewInvoice$ | async }"
+  >
+    <edit-invoice-modal [invoice]="invoice"></edit-invoice-modal>
+  </div>
   @if (toggleConfirm$ | async) {
   <div
     class="h-full w-full fixed top-0 left-0 bg-slate-300/50 backdrop-blur-xs z-50 border-2 lg:mt-0 transition ease-out duration-300 transform"

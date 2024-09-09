@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../models/app-state.interface';
@@ -10,13 +10,17 @@ import { Invoice } from '../../models/invoice.interface';
   templateUrl: './new-invoice.component.html',
   styleUrls: ['./new-invoice.component.css'],
 })
-export class NewInvoiceComponent {
+export class NewInvoiceComponent implements OnDestroy {
   @Output() toggleModal = new EventEmitter<boolean>();
   invoiceForm: FormGroup;
 
   constructor(private fb: FormBuilder, private store: Store<AppState>) {
     this.invoiceForm = this.createInvoiceForm();
     this.addItem();
+  }
+
+  ngOnDestroy(): void {
+    console.log('the form was destroyed');
   }
 
   private createInvoiceForm(): FormGroup {
@@ -88,6 +92,27 @@ export class NewInvoiceComponent {
     const invoice = this.buildInvoice('pending');
     this.store.dispatch(InvoiceActions.addNewInvoice({ value: invoice }));
     this.toggleModal.emit();
+    // this.invoiceForm.patchValue({
+    //   billFrom: {
+    //     streetAddress: '',
+    //     city: '',
+    //     postCode: '',
+    //     country: '',
+    //   },
+    //   billTo: {
+    //     clientName: '',
+    //     clientEmail: '',
+    //     streetAddress: '',
+    //     city: '',
+    //     postCode: '',
+    //     country: '',
+    //   },
+    //   invoiceDate: '',
+    //   paymentTerms: '',
+    //   projectDescription: '',
+    //   items: '',
+    // });
+    this.invoiceForm.reset(this.invoiceForm.value);
   }
 
   onSaveAsDraft(): void {
