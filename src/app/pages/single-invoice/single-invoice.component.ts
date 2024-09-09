@@ -7,7 +7,12 @@ import { selectFilteredInvoices } from '../../store/invoices/invoices.selectors'
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Item } from '../../models/item.interface';
 import * as InvoiceActions from '../../store/invoices/invoices.actions';
-import { selectConfirmDeleteModal } from '../../store/ui/ui.selectors';
+import * as UIActions from '../../store/ui/ui.actions';
+
+import {
+  selectConfirmDeleteModal,
+  selectModalVisibility,
+} from '../../store/ui/ui.selectors';
 import * as UiActions from '../../store/ui/ui.actions';
 
 @Component({
@@ -20,11 +25,15 @@ export class SingleInvoiceComponent implements OnInit {
   invoice$!: Observable<Invoice>;
   invoiceId!: string | null;
   toggleConfirm$!: Observable<boolean>;
+  toggleNewInvoice$: Observable<boolean>;
+
   constructor(
     private store: Store<AppState>,
     private router: ActivatedRoute,
     private router2: Router
-  ) {}
+  ) {
+    this.toggleNewInvoice$ = this.store.pipe(select(selectModalVisibility));
+  }
   onGoBack() {
     this.router2.navigate(['../..'], { relativeTo: this.router });
   }
@@ -52,6 +61,8 @@ export class SingleInvoiceComponent implements OnInit {
     this.router2.navigate(['../..'], { relativeTo: this.router });
   }
   toggle(): void {
+    this.store.dispatch(UIActions.toggleNewInvoiceModal());
+
     this.toggleNewInvoice = !this.toggleNewInvoice;
   }
   markAsPaid(id: string): void {

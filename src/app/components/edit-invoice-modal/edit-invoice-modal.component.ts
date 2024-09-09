@@ -3,6 +3,8 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../models/app-state.interface';
 import * as InvoiceActions from '../../store/invoices/invoices.actions';
+import * as UIActions from '../../store/ui/ui.actions';
+
 import { Invoice } from '../../models/invoice.interface';
 
 @Component({
@@ -11,7 +13,6 @@ import { Invoice } from '../../models/invoice.interface';
   styleUrl: './edit-invoice-modal.component.css',
 })
 export class EditInvoiceModalComponent implements OnInit {
-  @Output() toggleModal = new EventEmitter<boolean>();
   @Input({ required: true }) invoice: Invoice = {} as Invoice;
   invoiceForm: FormGroup;
 
@@ -110,7 +111,7 @@ export class EditInvoiceModalComponent implements OnInit {
 
     const invoice = this.buildInvoice();
     this.store.dispatch(InvoiceActions.editInvoice({ value: invoice }));
-    this.toggleModal.emit();
+    this.store.dispatch(UIActions.toggleNewInvoiceModal());
   }
 
   private buildInvoice(): Invoice {
@@ -159,6 +160,6 @@ export class EditInvoiceModalComponent implements OnInit {
   }
 
   discard(): void {
-    this.toggleModal.emit();
+    this.store.dispatch(UIActions.toggleNewInvoiceModal());
   }
 }
